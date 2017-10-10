@@ -46,7 +46,7 @@ set -g status-left "#[fg=$grey0,bg=$MAIN,bold] #(whoami)@#H #[fg=$MAIN,bg=$grey2
 set -g status-right-bg $grey0
 set -g status-right-fg colour243
 set -g status-right-length 150
-set -g status-right "#{prefix_highlight}#[fg=$grey1,bg=$BG]#[fg=$white6,bg=$grey1] #{download_speed}  #[fg=$grey2,bg=$grey1]#[fg=yellow,bg=$grey2]  %T #[fg=$MAIN,bg=$grey2]#[fg=$grey0,bg=$MAIN]  %F "
+set -g status-right "#{prefix_highlight}#[fg=$grey1,bg=$BG]#[fg=$white6,bg=$grey1] #{download_speed} #[fg=$grey2,bg=$grey1]#[fg=yellow,bg=$grey2]  %T #[fg=$MAIN,bg=$grey2]#[fg=$grey0,bg=$MAIN]  %F "
 
 
 # Window status
