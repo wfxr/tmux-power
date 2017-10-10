@@ -40,13 +40,13 @@ set -g status-left-bg $grey0
 set -g status-left-fg colour243
 set -g status-left-length 40
 # set -g status-left "#[fg=$grey0,bg=$MAIN,bold] #S #[fg=$MAIN,bg=$grey2,nobold]#[fg=yellow,bg=$grey2] #(whoami) #[fg=$grey2,bg=$grey1]#[fg=green,bg=$grey1] #{pane_current_path} #[fg=$grey1,bg=$BG,nobold]"
-set -g status-left "#[fg=$grey0,bg=$MAIN,bold] #S #[fg=$MAIN,bg=$grey2,nobold]#[fg=yellow,bg=$grey2] #(whoami) #[fg=$grey2,bg=$BG]"
+set -g status-left "#[fg=$grey0,bg=$MAIN,bold] #(whoami)@#H #[fg=$MAIN,bg=$grey2,nobold]#[fg=yellow,bg=$grey2] #S #[fg=$grey2,bg=$BG]"
 
 # Right side of status bar
 set -g status-right-bg $grey0
 set -g status-right-fg colour243
 set -g status-right-length 150
-set -g status-right "#{prefix_highlight}#[fg=$grey1,bg=$BG]#[fg=$white6,bg=$grey1] #{download_speed}  #[fg=$grey2,bg=$grey1]#[fg=yellow,bg=$grey2] %F #[fg=$MAIN,bg=$grey2]#[fg=$grey0,bg=$MAIN,bold] #H "
+set -g status-right "#{prefix_highlight}#[fg=$grey1,bg=$BG]#[fg=$white6,bg=$grey1] #{download_speed}  #[fg=$grey2,bg=$grey1]#[fg=yellow,bg=$grey2]  %T #[fg=$MAIN,bg=$grey2]#[fg=$grey0,bg=$MAIN]  %F "
 
 
 # Window status
