@@ -30,8 +30,8 @@ set -g @prefix_highlight_fg $BG
 set -g @prefix_highlight_bg $FG
 set -g @prefix_highlight_show_copy_mode 'on'
 set -g @prefix_highlight_copy_mode_attr 'fg=$MAIN,bg=$BG,bold'
-set -g @prefix_highlight_output_prefix "#[fg=$MAIN]#[bg=$BG]#[bg=$MAIN]#[fg=$BG] "
-set -g @prefix_highlight_output_suffix " #[fg=$MAIN]#[bg=$BG]"
+set -g @prefix_highlight_output_prefix "#[fg=$MAIN]#[bg=$BG]#[bg=$MAIN]#[fg=$BG]"
+set -g @prefix_highlight_output_suffix "#[fg=$MAIN]#[bg=$BG]"
 
 #     
 # Left side of status bar
