@@ -29,37 +29,37 @@ set -g status-attr none
 set -g @prefix_highlight_fg $BG
 set -g @prefix_highlight_bg $FG
 set -g @prefix_highlight_show_copy_mode 'on'
-set -g @prefix_highlight_copy_mode_attr 'fg=$FG,bg=$BG,bold'
-set -g @prefix_highlight_output_prefix "#[fg=$MAIN]#[bg=$BG]#[nobold]#[noitalics]#[nounderscore]#[bg=$MAIN]#[fg=$BG]"
-set -g @prefix_highlight_output_suffix ""
+set -g @prefix_highlight_copy_mode_attr 'fg=$MAIN,bg=$BG,bold'
+set -g @prefix_highlight_output_prefix "#[fg=$MAIN]#[bg=$BG]#[bg=$MAIN]#[fg=$BG] "
+set -g @prefix_highlight_output_suffix " #[fg=$MAIN]#[bg=$BG]"
 
-
+#     
 # Left side of status bar
 set -g status-left-bg $grey0
 set -g status-left-fg colour243
-set -g status-left-length 40
- #set -g status-left "#[fg=$grey0,bg=$MAIN,bold] #S #[fg=$MAIN,bg=$grey2,nobold]#[fg=$MAIN,bg=$grey2] #(whoami) #[fg=$grey2,bg=$grey1]#[fg=green,bg=$grey1] #{pane_current_path} #[fg=$grey1,bg=$BG,nobold]"
-set -g status-left "#[fg=$grey0,bg=$MAIN,bold] #(whoami)@#H #[fg=$MAIN,bg=$grey2,nobold]#[fg=$MAIN,bg=$grey2] #S #[fg=$grey2,bg=$BG]"
+set -g status-left-length 150
+#set -g status-left "#[fg=$grey0,bg=$MAIN,bold] #(whoami)@#H #[fg=$MAIN,bg=$grey2,nobold]#[fg=$MAIN,bg=$grey2] #S #[fg=$grey2,bg=$BG]"
+set -g status-left "#[fg=$grey0,bg=$MAIN,bold]  #(whoami)@#H #[fg=$MAIN,bg=$grey2,nobold]#[fg=$MAIN,bg=$grey2]  #S #[fg=$grey2,bg=$grey1]#[fg=$MAIN,bg=$grey1] #{@upload_speed_icon}#{upload_speed} #[fg=$grey1,bg=$BG]#{prefix_highlight}"
+
 
 # Right side of status bar
 set -g status-right-bg $grey0
 set -g status-right-fg colour243
 set -g status-right-length 150
-set -g status-right "#{prefix_highlight}#[fg=$grey1,bg=$BG]#[fg=$MAIN,bg=$grey1] #{@upload_speed_icon}#{upload_speed} #{@download_speed_icon}#{download_speed} #[fg=$grey2,bg=$grey1]#[fg=$MAIN,bg=$grey2]  %T #[fg=$MAIN,bg=$grey2]#[fg=$grey0,bg=$MAIN]  %F "
-
+#set -g status-right "#{prefix_highlight}#[fg=$grey1,bg=$BG]#[fg=$MAIN,bg=$grey1] #{@upload_speed_icon}#{upload_speed} #{@download_speed_icon}#{download_speed} #[fg=$grey2,bg=$grey1]#[fg=$MAIN,bg=$grey2]  %T #[fg=$MAIN,bg=$grey2]#[fg=$grey0,bg=$MAIN]  %F "
+set -g status-right "#{prefix_highlight}#[fg=$grey1,bg=$BG]#[fg=$MAIN,bg=$grey1] #{@download_speed_icon}#{download_speed} #[fg=$grey2,bg=$grey1]#[fg=$MAIN,bg=$grey2]  %T #[fg=$MAIN,bg=$grey2]#[fg=$grey0,bg=$MAIN]  %F "
 
 # Window status
-set -g window-status-format "  #I:#W#F  "
-set -g window-status-current-format "#[fg=$BG,bg=$grey2]#[fg=$MAIN,bold] #I:#W#F #[fg=$BG,bg=$grey2,nobold]"
-#set -g window-status-current-format " #I:#W#F "
+set -g window-status-format " #I:#W#F "
+#set -g window-status-current-format "#[fg=$BG,bg=$grey2]#[fg=$MAIN,bold] #I:#W#F #[fg=$BG,bg=$grey2,nobold]"
+set -g window-status-current-format "#[fg=$BG,bg=$grey2]#[fg=$MAIN,bold] #I:#W#F #[fg=$grey2,bg=$BG,nobold]"
+# Window with activity status
+#set -g window-status-activity-bg colour245 # fg and bg are flipped here due to a bug in tmux
+#set -g window-status-activity-fg $grey0
 
 # Current window status
 run -b 'tmux set -g window-status-current-bg $(tmux show -gv "@theme-color")'
 set -g window-status-current-fg $BG
-
-# Window with activity status
-set -g window-status-activity-bg colour245 # fg and bg are flipped here due to a bug in tmux
-set -g window-status-activity-fg $grey0
 
 # Window separator
 set -g window-status-separator ""
@@ -76,8 +76,8 @@ run -b 'tmux set -g pane-active-border-fg $(tmux show -gv "@theme-color")'
 set -g pane-active-border-bg default
 
 # Pane number indicator
-set -g display-panes-colour $grey0
-set -g display-panes-active-colour colour245
+set -g display-panes-colour $grey3
+run -b 'tmux set -g display-panes-active-colour $(tmux show -gv "@theme-color")'
 
 # Clock mode
 run -b 'tmux set -g clock-mode-colour $(tmux show -gv "@theme-color")'
@@ -91,8 +91,8 @@ set -g message-bg $BG
 run -b 'tmux set -g message-command-fg $(tmux show -gv "@theme-color")'
 set -g message-command-bg $BG
 
-# Mode
-run -b 'tmux set -g mode-fg $(tmux show -gv "@theme-color")'
-set -g mode-fg $grey0
+# Copy mode highlight
+run -b 'tmux set -g mode-bg $(tmux show -gv "@theme-color")'
+set -g mode-fg $BG
 
 # vim: set ft=tmux:
