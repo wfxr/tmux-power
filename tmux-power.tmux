@@ -22,22 +22,28 @@ tmux_set() {
 TC="$(tmux_get '@tmux_power_theme')"
 case $TC in
     'gold' )
-        TC='yellow'
+        TC='#ffb86c'
         ;;
-    'fire' )
-        TC='red'
+    'redwine' )
+        TC='#b34a47'
+        ;;
+    'moon' )
+        TC='#00abab'
         ;;
     'forest' )
-        TC='green'
+        TC='#228b22'
         ;;
-    'ocean' )
-        TC='colour39'
+    'violet' )
+        TC='#9370db'
         ;;
-    'night' )
-        TC='blue'
+    'snow' )
+        TC='#fffafa'
         ;;
-    'gay' )
-        TC='magenta'
+    'coral' )
+        TC='#ff7f50'
+        ;;
+    'sky' )
+        TC='#87ceeb'
         ;;
 esac
 GR0=colour235
