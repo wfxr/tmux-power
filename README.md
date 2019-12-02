@@ -1,6 +1,6 @@
 # Tmux Powerline Theme
 
-[![License](https://img.shields.io/badge/tmp--support-true-blue)](https://github.com/tmux-plugins/tpm)
+[![License](https://img.shields.io/badge/tpm--support-true-blue)](https://github.com/tmux-plugins/tpm)
 ![Platform](https://img.shields.io/badge/Platform-OSX%20|%20Linux%20|%20Windows-orange.svg)
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://wfxr.mit-license.org/2017)
 
