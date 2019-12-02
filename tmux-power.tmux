@@ -121,23 +121,20 @@ tmux_set status-right "$RS"
 tmux_set window-status-format " #I:#W#F "
 tmux_set window-status-current-format "#[fg=$BG,bg=$GR2]#[fg=$TC,bold] #I:#W#F #[fg=$GR2,bg=$BG,nobold]"
 
-# Current window status
-tmux_set window-status-current-bg $TC
-tmux_set window-status-current-fg $BG
-
 # Window separator
 tmux_set window-status-separator ""
 
 # Window status alignment
 tmux_set status-justify centre
 
+# Current window status
+tmux_set window-status-current-statys fg=$TC bg=$BG
+
 # Pane border
-tmux_set pane-border-bg default
-tmux_set pane-border-fg $GR3
+tmux_set pane-border-style fg=$GR3 bg=default
 
 # Active pane border
-tmux_set pane-active-border-fg $TC
-tmux_set pane-active-border-bg default
+tmux_set pane-active-border-style fg=$TC bg=$BG
 
 # Pane number indicator
 tmux_set display-panes-colour $GR3
@@ -148,13 +145,10 @@ tmux_set clock-mode-colour $TC
 tmux_set clock-mode-style 24
 
 # Message
-tmux_set message-fg $TC
-tmux_set message-bg $BG
+tmux_set message-style fg=$TC bg=$BG
 
 # Command message
-tmux_set message-command-fg $TC
-tmux_set message-command-bg $BG
+tmux_set message-command-style fg=$TC bg=$BG
 
 # Copy mode highlight
-tmux_set mode-bg $TC
-tmux_set mode-fg $BG
+tmux_set mode-style bg=$TC fg=$BG
