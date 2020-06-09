@@ -77,11 +77,6 @@ prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 # Network speed
 show_upload_speed="$(tmux_get @tmux_power_upload_speed false)"
 show_download_speed="$(tmux_get @tmux_power_download_speed false)"
-# tmux-net-speed has no support for mac
-if [[ $(uname) == 'Darwin' ]]; then
-    show_upload_speed=false
-    show_download_speed=false
-fi
 upload_speed_icon=$(tmux_get @tmux_power_upload_speed_icon '')
 download_speed_icon=$(tmux_get @tmux_power_download_speed_icon '')
 
