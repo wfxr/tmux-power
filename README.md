@@ -47,13 +47,12 @@ set -g @plugin 'wfxr/tmux-power'
 **Sky**: `set -g @tmux_power_theme 'sky'`
 ![screenshot](https://raw.githubusercontent.com/wfxr/i/master/tmux-power-sky.png)
 
-### Customizing
+### ⚙  Customizing
 
 You can define your favourite main color if you don't like any of above.
 
 ```tmux
-# dark slate blue
-set -g @tmux_power_theme '#483D8B'
+set -g @tmux_power_theme '#483D8B' # dark slate blue
 ```
 
 ### 📃 License
