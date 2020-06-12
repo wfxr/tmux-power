@@ -9,7 +9,7 @@
 # $2: default value
 tmux_get() {
     local value="$(tmux show -gqv "$1")"
-    [ -n "$value" ] && echo $value || echo $2
+    [ -n "$value" ] && echo "$value" || echo "$2"
 }
 
 # $1: option
@@ -19,7 +19,7 @@ tmux_set() {
 }
 
 # short for Theme-Colour
-TC="$(tmux_get '@tmux_power_theme')"
+TC="$(tmux_get '@tmux_power_theme' 'gold')"
 case $TC in
     'gold' )
         TC='#ffb86c'
