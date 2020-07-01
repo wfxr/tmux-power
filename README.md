@@ -10,10 +10,13 @@ Yet another powerline theme for tmux.
 
 **Install manually**
 
-```bash
-git clone https://github.com/wfxr/tmux-power.git ~/.tmux-power
-echo 'source-file "${HOME}/.tmux-power/tmux-power.tmux' >> ~/.tmux.conf
+Clone the repo somewhere and source it in `.tmux.conf`:
+
+```tmux
+run-shell "/path/to/tmux-power.tmux"
 ```
+
+*NOTE: Options should be set before sourcing.*
 
 **Install using [TPM](https://github.com/tmux-plugins/tpm)**
 
