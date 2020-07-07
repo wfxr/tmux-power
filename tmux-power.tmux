@@ -19,12 +19,15 @@ tmux_set() {
 }
 
 # Options
-upload_speed_icon=$(tmux_get '@upload_speed_icon' '')
-download_speed_icon=$(tmux_get '@download_speed_icon' '')
-session_icon="$(tmux_get '@session_icon' '')"
-user_icon="$(tmux_get '@user_icon' '')"
-time_icon="$(tmux_get '@time_icon' '')"
-date_icon="$(tmux_get '@date_icon' '')"
+upload_speed_icon=$(tmux_get '@tmux_power_upload_speed_icon' '')
+download_speed_icon=$(tmux_get '@tmux_power_download_speed_icon' '')
+session_icon="$(tmux_get '@tmux_power_session_icon' '')"
+user_icon="$(tmux_get '@tmux_power_user_icon' '')"
+time_icon="$(tmux_get '@tmux_power_time_icon' '')"
+date_icon="$(tmux_get '@tmux_power_date_icon' '')"
+show_upload_speed="$(tmux_get @tmux_power_show_upload_speed false)"
+show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
+prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 # short for Theme-Colour
 TC=$(tmux_get '@tmux_power_theme' 'gold')
 case $TC in
@@ -79,11 +82,6 @@ tmux_set @prefix_highlight_show_copy_mode 'on'
 tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$BG,bold"
 tmux_set @prefix_highlight_output_prefix "#[fg=$TC]#[bg=$BG]#[bg=$TC]#[fg=$BG]"
 tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]"
-prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
-
-# Network speed
-show_upload_speed="$(tmux_get @tmux_power_upload_speed false)"
-show_download_speed="$(tmux_get @tmux_power_download_speed false)"
 
 #     
 # Left side of status bar
