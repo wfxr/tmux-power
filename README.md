@@ -58,6 +58,19 @@ You can define your favourite main color if you don't like any of above.
 set -g @tmux_power_theme '#483D8B' # dark slate blue
 ```
 
+You can also customize the icons:
+
+```tmux
+set -g @date_icon ' ' # set it to a blank will disable the icon
+set -g @time_icon '🕘' # emoji can be used if your terminal supports
+set -g @user_icon 'U'
+set -g @session_icon 'S'
+set -g @upload_speed_icon '↑'
+set -g @download_speed_icon '↓'
+```
+
+*The default icons use glyphs from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*
+
 ### 🔗 Other plugins
 
 - [tmux-fzf-url](https://github.com/wfxr/tmux-fzf-url)

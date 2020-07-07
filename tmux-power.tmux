@@ -18,8 +18,15 @@ tmux_set() {
     tmux set-option -gq "$1" "$2"
 }
 
+# Options
+upload_speed_icon=$(tmux_get '@upload_speed_icon' '')
+download_speed_icon=$(tmux_get '@download_speed_icon' '')
+session_icon="$(tmux_get '@session_icon' '')"
+user_icon="$(tmux_get '@user_icon' '')"
+time_icon="$(tmux_get '@time_icon' '')"
+date_icon="$(tmux_get '@date_icon' '')"
 # short for Theme-Colour
-TC="$(tmux_get '@tmux_power_theme' 'gold')"
+TC=$(tmux_get '@tmux_power_theme' 'gold')
 case $TC in
     'gold' )
         TC='#ffb86c'
@@ -77,8 +84,6 @@ prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 # Network speed
 show_upload_speed="$(tmux_get @tmux_power_upload_speed false)"
 show_download_speed="$(tmux_get @tmux_power_download_speed false)"
-upload_speed_icon=$(tmux_get @tmux_power_upload_speed_icon '')
-download_speed_icon=$(tmux_get @tmux_power_download_speed_icon '')
 
 #     
 # Left side of status bar
@@ -86,7 +91,7 @@ tmux_set status-left-bg "$GR0"
 tmux_set status-left-fg colour243
 tmux_set status-left-length 150
 user=$(whoami)
-LS="#[fg=$GR0,bg=$TC,bold]  $user@#h #[fg=$TC,bg=$GR2,nobold]#[fg=$TC,bg=$GR2]  #S "
+LS="#[fg=$GR0,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] $session_icon #S "
 if "$show_upload_speed"; then
     LS="$LS#[fg=$GR2,bg=$GR1]#[fg=$TC,bg=$GR1] $upload_speed_icon#{upload_speed} #[fg=$GR1,bg=$BG]"
 else
@@ -101,7 +106,7 @@ tmux_set status-left "$LS"
 tmux_set status-right-bg $GR0
 tmux_set status-right-fg colour243
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$GR2]  %T #[fg=$TC,bg=$GR2]#[fg=$GR0,bg=$TC]  %F "
+RS="#[fg=$TC,bg=$GR2] $time_icon %T #[fg=$TC,bg=$GR2]#[fg=$GR0,bg=$TC] $date_icon %F "
 if "$show_download_speed"; then
     RS="#[fg=$GR1,bg=$BG]#[fg=$TC,bg=$GR1] $download_speed_icon#{download_speed} #[fg=$GR2,bg=$GR1]$RS"
 else
