@@ -68,8 +68,23 @@ set -g @tmux_power_session_icon 'S'
 set -g @tmux_power_upload_speed_icon '↑'
 set -g @tmux_power_download_speed_icon '↓'
 ```
-
 *The default icons use glyphs from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*
+
+### 📦 Plugin support
+
+**[tmux-net-speed](https://github.com/wfxr/tmux-net-speed)**
+
+```tmux
+set -g @tmux_power_show_upload_speed true
+set -g @tmux_power_show_download_speed true
+```
+
+**[tmux-prefix-highlight](https://github.com/tmux-plugins/tmux-prefix-highlight)**
+
+```tmux
+# 'L' for left only, 'R' for right only and 'LR' for both
+set -g @tmux_power_prefix_highlight_pos 'LR'
+```
 
 ### 🔗 Other plugins
 
