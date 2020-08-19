@@ -88,6 +88,8 @@ set -g @tmux_power_prefix_highlight_pos 'LR'
 
 ### 🔗 Other plugins
 
+You might also find these useful:
+
 - [tmux-fzf-url](https://github.com/wfxr/tmux-fzf-url)
 - [tmux-net-speed](https://github.com/wfxr/tmux-net-speed)
 
