@@ -56,15 +56,22 @@ case $TC in
         TC='#87ceeb'
         ;;
 esac
-GR0=colour235
-GR1=colour236
-GR2=colour237
-GR3=colour238
-GR4=colour239
-GR5=colour240
-GR6=colour241
-BG="$GR0"
-FG="$GR6"
+
+G01=#080808 #232
+G02=#121212 #233
+G03=#1c1c1c #234
+G04=#262626 #235
+G05=#303030 #236
+G06=#3a3a3a #237
+G07=#444444 #238
+G08=#4e4e4e #239
+G09=#585858 #240
+G10=#626262 #241
+G11=#6c6c6c #242
+G12=#767676 #243
+
+FG="$G10"
+BG="$G04"
 
 # Status options
 tmux_set status-interval 1
@@ -85,15 +92,15 @@ tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]"
 
 #     
 # Left side of status bar
-tmux_set status-left-bg "$GR0"
-tmux_set status-left-fg colour243
+tmux_set status-left-bg "$G04"
+tmux_set status-left-fg "G12"
 tmux_set status-left-length 150
 user=$(whoami)
-LS="#[fg=$GR0,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] $session_icon #S "
+LS="#[fg=$G04,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$G06,nobold]#[fg=$TC,bg=$G06] $session_icon #S "
 if "$show_upload_speed"; then
-    LS="$LS#[fg=$GR2,bg=$GR1]#[fg=$TC,bg=$GR1] $upload_speed_icon#{upload_speed} #[fg=$GR1,bg=$BG]"
+    LS="$LS#[fg=$G06,bg=$G05]#[fg=$TC,bg=$G05] $upload_speed_icon#{upload_speed} #[fg=$G05,bg=$BG]"
 else
-    LS="$LS#[fg=$GR2,bg=$BG]"
+    LS="$LS#[fg=$G06,bg=$BG]"
 fi
 if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
     LS="$LS#{prefix_highlight}"
@@ -101,14 +108,14 @@ fi
 tmux_set status-left "$LS"
 
 # Right side of status bar
-tmux_set status-right-bg $GR0
-tmux_set status-right-fg colour243
+tmux_set status-right-bg "$G04"
+tmux_set status-right-fg "G12"
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$GR2] $time_icon %T #[fg=$TC,bg=$GR2]#[fg=$GR0,bg=$TC] $date_icon %F "
+RS="#[fg=$TC,bg=$G06] $time_icon %T #[fg=$TC,bg=$G06]#[fg=$G04,bg=$TC] $date_icon %F "
 if "$show_download_speed"; then
-    RS="#[fg=$GR1,bg=$BG]#[fg=$TC,bg=$GR1] $download_speed_icon#{download_speed} #[fg=$GR2,bg=$GR1]$RS"
+    RS="#[fg=$G05,bg=$BG]#[fg=$TC,bg=$G05] $download_speed_icon#{download_speed} #[fg=$G06,bg=$G05]$RS"
 else
-    RS="#[fg=$GR2,bg=$BG]$RS"
+    RS="#[fg=$G06,bg=$BG]$RS"
 fi
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
@@ -117,7 +124,7 @@ tmux_set status-right "$RS"
 
 # Window status
 tmux_set window-status-format " #I:#W#F "
-tmux_set window-status-current-format "#[fg=$BG,bg=$GR2]#[fg=$TC,bold] #I:#W#F #[fg=$GR2,bg=$BG,nobold]"
+tmux_set window-status-current-format "#[fg=$BG,bg=$G06]#[fg=$TC,bold] #I:#W#F #[fg=$G06,bg=$BG,nobold]"
 
 # Window separator
 tmux_set window-status-separator ""
@@ -126,27 +133,27 @@ tmux_set window-status-separator ""
 tmux_set status-justify centre
 
 # Current window status
-tmux_set window-status-current-statys fg=$TC bg=$BG
+tmux_set window-status-current-statys "fg=$TC,bg=$BG"
 
 # Pane border
-tmux_set pane-border-style fg=$GR3 bg=default
+tmux_set pane-border-style "fg=$G07,bg=default"
 
 # Active pane border
-tmux_set pane-active-border-style fg=$TC bg=$BG
+tmux_set pane-active-border-style "fg=$TC,bg=$BG"
 
 # Pane number indicator
-tmux_set display-panes-colour $GR3
-tmux_set display-panes-active-colour $TC
+tmux_set display-panes-colour "$G07"
+tmux_set display-panes-active-colour "$TC"
 
 # Clock mode
-tmux_set clock-mode-colour $TC
+tmux_set clock-mode-colour "$TC"
 tmux_set clock-mode-style 24
 
 # Message
-tmux_set message-style fg=$TC bg=$BG
+tmux_set message-style "fg=$TC,bg=$BG"
 
 # Command message
-tmux_set message-command-style fg=$TC bg=$BG
+tmux_set message-command-style "fg=$TC,bg=$BG"
 
 # Copy mode highlight
-tmux_set mode-style bg=$TC fg=$BG
+tmux_set mode-style "bg=$TC,fg=$FG"
