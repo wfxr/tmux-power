@@ -67,6 +67,8 @@ set -g @tmux_power_user_icon 'U'
 set -g @tmux_power_session_icon 'S'
 set -g @tmux_power_upload_speed_icon '↑'
 set -g @tmux_power_download_speed_icon '↓'
+set -g @tmux_power_left_arrow_icon ''
+set -g @tmux_power_right_arrow_icon ''
 ```
 *The default icons use glyphs from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*
 
