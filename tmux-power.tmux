@@ -57,6 +57,9 @@ case $TC in
     'sky' )
         TC='#87ceeb'
         ;;
+    'default' ) # Useful when your term changes colour dynamically (e.g. pywal)
+        TC='colour3'
+        ;;
 esac
 
 G01=#080808 #232

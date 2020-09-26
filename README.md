@@ -50,6 +50,10 @@ set -g @plugin 'wfxr/tmux-power'
 **Sky**: `set -g @tmux_power_theme 'sky'`
 ![screenshot](https://raw.githubusercontent.com/wfxr/i/master/tmux-power-sky.png)
 
+**Default**: `set -g @tmux_power_theme 'default'`
+Set this theme if you want to honor the terminal colorscheme. To be used with
+something like [pywal](https://github.com/dylanaraps/pywal) for instance.
+
 ### ⚙  Customizing
 
 You can define your favourite main color if you don't like any of above.
