@@ -50,6 +50,10 @@ set -g @plugin 'wfxr/tmux-power'
 **Sky**: `set -g @tmux_power_theme 'sky'`
 ![screenshot](https://raw.githubusercontent.com/wfxr/i/master/tmux-power-sky.png)
 
+**Default**: `set -g @tmux_power_theme 'default'`
+Set this theme if you want to honor the terminal colorscheme. To be used with
+something like [pywal](https://github.com/dylanaraps/pywal) for instance.
+
 ### ⚙  Customizing
 
 You can define your favourite main color if you don't like any of above.
@@ -67,6 +71,8 @@ set -g @tmux_power_user_icon 'U'
 set -g @tmux_power_session_icon 'S'
 set -g @tmux_power_upload_speed_icon '↑'
 set -g @tmux_power_download_speed_icon '↓'
+set -g @tmux_power_left_arrow_icon ''
+set -g @tmux_power_right_arrow_icon ''
 ```
 *The default icons use glyphs from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*
 
