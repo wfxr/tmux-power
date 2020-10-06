@@ -118,7 +118,7 @@ tmux_set status-right-bg "$G02"
 tmux_set status-right-fg "G12"
 tmux_set status-right-length 150
 RS="#[fg=$TC,bg=$G02] $time_icon %T #[fg=$TC,bg=$G02]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon %F "
-RS="#[fg=$TC,bg=$G06] $music_icon #{spotify_status}#[fg=$G02,bg=$G06]$left_arrow_icon$RS"
+RS="#[fg=$G12,bg=$G06] $music_icon #{spotify_status} #[fg=$G02,bg=$G06]$left_arrow_icon$RS"
 if "$show_download_speed"; then
     RS="#[fg=$G05,bg=$BG]$left_arrow_icon#[fg=$TC,bg=$G05] $download_speed_icon#{download_speed} #[fg=$G06,bg=$G05]$left_arrow_icon$RS"
 else
