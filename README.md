@@ -92,12 +92,19 @@ set -g @tmux_power_show_download_speed true
 set -g @tmux_power_prefix_highlight_pos 'LR'
 ```
 
+**[tmux-web-reachable](https://github.com/wfxr/tmux-web-reachable)**
+
+```tmux
+set -g @tmux_power_show_web_reachable true
+```
+
 ### 🔗 Other plugins
 
 You might also find these useful:
 
 - [tmux-fzf-url](https://github.com/wfxr/tmux-fzf-url)
 - [tmux-net-speed](https://github.com/wfxr/tmux-net-speed)
+- [tmux-web-reachable](https://github.com/wfxr/tmux-web-reachable)
 
 ### 📃 License
 
