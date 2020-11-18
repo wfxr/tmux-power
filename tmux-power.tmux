@@ -119,10 +119,10 @@ tmux_set status-right-fg "G12"
 tmux_set status-right-length 150
 RS="#[fg=$TC,bg=$G06] $time_icon %T #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon %F "
 if "$show_download_speed"; then
-    $show_web_reachable && web_reachable_status=' #{web_reachable_status}'
-    RS="#[fg=$G05,bg=$BG]$left_arrow_icon#[fg=$TC,bg=$G05] $download_speed_icon#{download_speed}$web_reachable_status #[fg=$G06,bg=$G05]$left_arrow_icon$RS"
-else
-    RS="#[fg=$G06,bg=$BG]$left_arrow_icon$RS"
+    RS="#[fg=$G05,bg=$BG]$left_arrow_icon#[fg=$TC,bg=$G05] $download_speed_icon#{download_speed} #[fg=$G06,bg=$G05]$left_arrow_icon$RS"
+fi
+if "$show_web_reachable"; then
+    RS=" #{web_reachable_status} $RS"
 fi
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
