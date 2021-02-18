@@ -62,6 +62,13 @@ You can define your favourite main color if you don't like any of above.
 set -g @tmux_power_theme '#483D8B' # dark slate blue
 ```
 
+You can change the date and time formats using strftime:
+
+```tmux
+set -g @tmux_power_date_format '%F'
+set -g @tmux_power_time_format '%T'
+```
+
 You can also customize the icons:
 
 ```tmux
