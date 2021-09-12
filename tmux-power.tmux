@@ -15,7 +15,7 @@ tmux_get() {
 # $1: option
 # $2: value
 tmux_set() {
-    tmux set-option -goq "$1" "$2"
+    tmux set-option -gq "$1" "$2"
 }
 
 # Options
