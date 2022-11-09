@@ -116,7 +116,7 @@ fi
 tmux_set status-left "$LS"
 
 # Right side of status bar
-tmux_set status-right-bg "$G04"
+tmux_set status-right-bg "$BG"
 tmux_set status-right-fg "G12"
 tmux_set status-right-length 150
 RS="#[fg=$G06]$left_arrow_icon#[fg=$TC,bg=$G06] $time_icon $time_format #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format "
