@@ -18,6 +18,10 @@ tmux_set() {
     tmux set-option -gq "$1" "$2"
 }
 
+battery_level(){
+    upower -i $(upower -e | grep "DisplayDevice") | grep "percentage" | awk 'BEGIN{FS=" "}{print $2}'
+}
+
 # Options
 right_arrow_icon=$(tmux_get '@tmux_power_right_arrow_icon' '')
 left_arrow_icon=$(tmux_get '@tmux_power_left_arrow_icon' '')
@@ -27,6 +31,8 @@ session_icon="$(tmux_get '@tmux_power_session_icon' '')"
 user_icon="$(tmux_get '@tmux_power_user_icon' '')"
 time_icon="$(tmux_get '@tmux_power_time_icon' '')"
 date_icon="$(tmux_get '@tmux_power_date_icon' '')"
+battery_icon="$(tmux_get '@tmux_power_battery_icon' '')"
+show_battery="$(tmux_get @tmux_power_show_battery false)"
 show_upload_speed="$(tmux_get @tmux_power_show_upload_speed false)"
 show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
 show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
@@ -125,6 +131,10 @@ if "$show_download_speed"; then
 fi
 if "$show_web_reachable"; then
     RS=" #{web_reachable_status} $RS"
+fi
+if "$show_battery"; then
+    battery=$(battery_level)
+    RS=" $battery_icon $battery $RS"
 fi
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"

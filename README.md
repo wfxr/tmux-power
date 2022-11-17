@@ -69,6 +69,11 @@ set -g @tmux_power_date_format '%F'
 set -g @tmux_power_time_format '%T'
 ```
 
+You can enable a simple battery icon with:
+```tmux
+set -g @tmux_power_show_battery true
+```
+
 You can also customize the icons:
 
 ```tmux
@@ -80,6 +85,7 @@ set -g @tmux_power_upload_speed_icon '↑'
 set -g @tmux_power_download_speed_icon '↓'
 set -g @tmux_power_left_arrow_icon '<'
 set -g @tmux_power_right_arrow_icon '>'
+set -g @tmux_power_battery_icon ''
 ```
 *The default icons use glyphs from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*
 
