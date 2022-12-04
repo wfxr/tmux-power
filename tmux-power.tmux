@@ -148,7 +148,7 @@ tmux_set window-status-current-statys "fg=$TC,bg=$BG"
 tmux_set pane-border-style "fg=$G07,bg=default"
 
 # Active pane border
-tmux_set pane-active-border-style "fg=$TC,bg=$BG"
+tmux_set pane-active-border-style "fg=$TC,bg=default"
 
 # Pane number indicator
 tmux_set display-panes-colour "$G07"
