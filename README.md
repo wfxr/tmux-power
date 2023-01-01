@@ -77,10 +77,29 @@ something like [pywal](https://github.com/dylanaraps/pywal) for instance.
 
 ### ⚙  Customizing
 
-You can define your favourite main color if you don't like any of above.
+You can define your favourite colors if you don't like any of above.
 
 ```tmux
+# Main color
 set -g @tmux_power_theme '#483D8B' # dark slate blue
+
+# Foreground and background
+set -g @tmux_power_fg '#ffffff' # white
+set -g @tmux_power_bg '#000000' # black
+
+# Greys
+set -g @tmux_power_g01 "#080808"
+set -g @tmux_power_g02 "#121212"
+set -g @tmux_power_g03 "#1c1c1c"
+set -g @tmux_power_g04 "#262626"
+set -g @tmux_power_g05 "#303030"
+set -g @tmux_power_g06 "#3a3a3a"
+set -g @tmux_power_g07 "#444444"
+set -g @tmux_power_g08 "#4e4e4e"
+set -g @tmux_power_g00 "#585858"
+set -g @tmux_power_g10 "#626262"
+set -g @tmux_power_g11 "#6c6c6c"
+set -g @tmux_power_g12 "#767676"
 ```
 
 You can change the date and time formats using strftime:

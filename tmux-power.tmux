@@ -71,21 +71,21 @@ case $TC in
         ;;
 esac
 
-G01=#080808 #232
-G02=#121212 #233
-G03=#1c1c1c #234
-G04=#262626 #235
-G05=#303030 #236
-G06=#3a3a3a #237
-G07=#444444 #238
-G08=#4e4e4e #239
-G09=#585858 #240
-G10=#626262 #241
-G11=#6c6c6c #242
-G12=#767676 #243
+G01=$(tmux_get @tmux_power_g01 "#080808") #232
+G02=$(tmux_get @tmux_power_g02 "#121212") #233
+G03=$(tmux_get @tmux_power_g03 "#1c1c1c") #234
+G04=$(tmux_get @tmux_power_g04 "#262626") #235
+G05=$(tmux_get @tmux_power_g05 "#303030") #236
+G06=$(tmux_get @tmux_power_g06 "#3a3a3a") #237
+G07=$(tmux_get @tmux_power_g07 "#444444") #238
+G08=$(tmux_get @tmux_power_g08 "#4e4e4e") #239
+G09=$(tmux_get @tmux_power_g00 "#585858") #240
+G10=$(tmux_get @tmux_power_g10 "#626262") #241
+G11=$(tmux_get @tmux_power_g11 "#6c6c6c") #242
+G12=$(tmux_get @tmux_power_g12 "#767676") #243
 
-FG="$G10"
-BG="$G04"
+FG=$(tmux_get @tmux_power_fg "$G10")
+BG=$(tmux_get @tmux_power_bg "$G04")
 
 # Status options
 tmux_set status-interval 1
