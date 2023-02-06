@@ -33,7 +33,16 @@ show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
 prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 time_format=$(tmux_get @tmux_power_time_format '%T')
 date_format=$(tmux_get @tmux_power_date_format '%F')
-status_justify=$(tmux_get @tmux_power_status_justify 'left')
+status_justify=$(tmux_get @tmux_power_status_justify 'centre')
+
+# Host options
+show_host=$(tmux_get @tmux_power_host true)
+# TODO: Implement this later.  Need to account for dynamic orginization of elements on bar
+host_justify=$(tmux_get @tmux_power_host_justify 'left')
+host_show_user=$(tmux_get @tmux_power_host_show_user true)
+host_show_host=$(tmux_get @tmux_power_host_show_host true)
+
+
 # short for Theme-Colour
 TC=$(tmux_get '@tmux_power_theme' 'gold')
 case $TC in
@@ -104,10 +113,34 @@ tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]$right_arrow_icon"
 tmux_set status-left-bg "$G04"
 tmux_set status-left-fg "G12"
 tmux_set status-left-length 150
-user=$(whoami)
-LS="#[fg=$G04,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$G06,nobold]$right_arrow_icon#[fg=$TC,bg=$G06] $session_icon #S "
+
+# Build host block
+if "$show_host"; then
+    host="#[fg=$G04,bg=$TC,bold]"
+    if [[ $host_justify == 'right' ]]; then
+        host="$host$left_arrow_icon"
+    fi
+    if [[ $host_show_user ]]; then
+        host="$host $user_icon $(whoami)"
+    fi
+    if [[ $host_show_host ]]; then
+        host="$host@#h "
+    fi
+    if [[ $host_justify == 'left' ]]; then
+        host="$host$right_arrow_icon"
+    fi
+fi
+
+# Build session block
+session="#[fg=$TC,bg=$G06] $session_icon #S #[fg=$G06,bg=$G05]$right_arrow_icon"
+
+LS=""
+if "$show_host"; then
+    LS="$host"
+fi
+LS="$LS$session "
 if "$show_upload_speed"; then
-    LS="$LS#[fg=$G06,bg=$G05]$right_arrow_icon#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$right_arrow_icon"
+    LS="$LS#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$right_arrow_icon"
 else
     LS="$LS#[fg=$G06,bg=$BG]$right_arrow_icon"
 fi
