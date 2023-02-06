@@ -33,6 +33,7 @@ show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
 prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 time_format=$(tmux_get @tmux_power_time_format '%T')
 date_format=$(tmux_get @tmux_power_date_format '%F')
+status_justify=$(tmux_get @tmux_power_status_justify 'left')
 # short for Theme-Colour
 TC=$(tmux_get '@tmux_power_theme' 'gold')
 case $TC in
@@ -139,7 +140,7 @@ tmux_set window-status-current-format "#[fg=$BG,bg=$G06]$right_arrow_icon#[fg=$T
 tmux_set window-status-separator ""
 
 # Window status alignment
-tmux_set status-justify centre
+tmux_set status-justify "$status_justify"
 
 # Current window status
 tmux_set window-status-current-statys "fg=$TC,bg=$BG"
