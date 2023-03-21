@@ -132,7 +132,7 @@ fi
 tmux_set status-right "$RS"
 
 # Window status
-tmux_set window-status-format " #I:#W#F "
+tmux_set window-status-format "#[fg=$G12,bg=$BG,bold] #I:#W#F #[nobold]"
 tmux_set window-status-current-format "#[fg=$BG,bg=$G06]$right_arrow_icon#[fg=$TC,bold] #I:#W#F #[fg=$G06,bg=$BG,nobold]$right_arrow_icon"
 
 # Window separator
