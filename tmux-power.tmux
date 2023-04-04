@@ -127,7 +127,7 @@ if "$show_host"; then
         host="$host@#h "
     fi
     if [[ $host_justify == 'left' ]]; then
-        host="$host$right_arrow_icon"
+        host="$host#[fg=$G06,bg=$TC]$right_arrow_icon"
     fi
 fi
 
