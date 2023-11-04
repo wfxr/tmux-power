@@ -60,6 +60,9 @@ case $TC in
     'sky' )
         TC='#87ceeb'
         ;;
+    'everforest' )
+        TC='#a7c080'
+        ;;
     'default' ) # Useful when your term changes colour dynamically (e.g. pywal)
         TC='colour3'
         ;;
@@ -132,8 +135,8 @@ fi
 tmux_set status-right "$RS"
 
 # Window status
-tmux_set window-status-format " #I:#W#F "
-tmux_set window-status-current-format "#[fg=$BG,bg=$G06]$right_arrow_icon#[fg=$TC,bold] #I:#W#F #[fg=$G06,bg=$BG,nobold]$right_arrow_icon"
+tmux_set window-status-format "#[fg=$BG,bg=$G06]$right_arrow_icon#[fg=$TC,bg=$G06] #I:#W#F #[fg=$G06,bg=$BG]$right_arrow_icon"
+tmux_set window-status-current-format "#[fg=$BG,bg=$TC]$right_arrow_icon#[bg=$TC,bold] #I:#W#F #[bg=$BG,fg=$TC,nobold]$right_arrow_icon"
 
 # Window separator
 tmux_set window-status-separator ""
