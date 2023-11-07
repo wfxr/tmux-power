@@ -19,8 +19,8 @@ tmux_set() {
 }
 
 # Options
-right_arrow_icon=$(tmux_get '@tmux_power_right_arrow_icon' '')
-left_arrow_icon=$(tmux_get '@tmux_power_left_arrow_icon' '')
+rarrow=$(tmux_get '@tmux_power_right_arrow_icon' '')
+larrow=$(tmux_get '@tmux_power_left_arrow_icon' '')
 upload_speed_icon=$(tmux_get '@tmux_power_upload_speed_icon' '')
 download_speed_icon=$(tmux_get '@tmux_power_download_speed_icon' '')
 session_icon="$(tmux_get '@tmux_power_session_icon' '')"
@@ -98,20 +98,20 @@ tmux_set @prefix_highlight_fg "$BG"
 tmux_set @prefix_highlight_bg "$FG"
 tmux_set @prefix_highlight_show_copy_mode 'on'
 tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$BG,bold"
-tmux_set @prefix_highlight_output_prefix "#[fg=$TC]#[bg=$BG]$left_arrow_icon#[bg=$TC]#[fg=$BG]"
-tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]$right_arrow_icon"
+tmux_set @prefix_highlight_output_prefix "#[fg=$TC]#[bg=$BG]$larrow#[bg=$TC]#[fg=$BG]"
+tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]$rarrow"
 
 #     
 # Left side of status bar
 tmux_set status-left-bg "$G04"
-tmux_set status-left-fg "G12"
+tmux_set status-left-fg "$G12"
 tmux_set status-left-length 150
 user=$(whoami)
-LS="#[fg=$G04,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$G06,nobold]$right_arrow_icon#[fg=$TC,bg=$G06] $session_icon #S "
+LS="#[fg=$G04,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$G06,nobold]$rarrow#[fg=$TC,bg=$G06] $session_icon #S "
 if "$show_upload_speed"; then
-    LS="$LS#[fg=$G06,bg=$G05]$right_arrow_icon#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$right_arrow_icon"
+    LS="$LS#[fg=$G06,bg=$G05]$rarrow#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$rarrow"
 else
-    LS="$LS#[fg=$G06,bg=$BG]$right_arrow_icon"
+    LS="$LS#[fg=$G06,bg=$BG]$rarrow"
 fi
 if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
     LS="$LS#{prefix_highlight}"
@@ -120,11 +120,11 @@ tmux_set status-left "$LS"
 
 # Right side of status bar
 tmux_set status-right-bg "$BG"
-tmux_set status-right-fg "G12"
+tmux_set status-right-fg "$G12"
 tmux_set status-right-length 150
-RS="#[fg=$G06]$left_arrow_icon#[fg=$TC,bg=$G06] $time_icon $time_format #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format "
+RS="#[fg=$G06]$larrow#[fg=$TC,bg=$G06] $time_icon $time_format #[fg=$TC,bg=$G06]$larrow#[fg=$G04,bg=$TC] $date_icon $date_format "
 if "$show_download_speed"; then
-    RS="#[fg=$G05,bg=$BG]$left_arrow_icon#[fg=$TC,bg=$G05] $download_speed_icon #{download_speed} $RS"
+    RS="#[fg=$G05,bg=$BG]$larrow#[fg=$TC,bg=$G05] $download_speed_icon #{download_speed} $RS"
 fi
 if "$show_web_reachable"; then
     RS=" #{web_reachable_status} $RS"
@@ -134,18 +134,20 @@ if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
 fi
 tmux_set status-right "$RS"
 
-# Window status
-tmux_set window-status-format "#[fg=$BG,bg=$G06]$right_arrow_icon#[fg=$TC,bg=$G06] #I:#W#F #[fg=$G06,bg=$BG]$right_arrow_icon"
-tmux_set window-status-current-format "#[fg=$BG,bg=$TC]$right_arrow_icon#[bg=$TC,bold] #I:#W#F #[bg=$BG,fg=$TC,nobold]$right_arrow_icon"
+# Window status format
+tmux_set window-status-format         "#[fg=$BG,bg=$G06]$rarrow#[fg=$TC,bg=$G06] #I:#W #[fg=$G06,bg=$BG]$rarrow"
+tmux_set window-status-current-format "#[fg=$BG,bg=$TC]$rarrow#[fg=$BG,bg=$TC,bold] #I:#W #[fg=$TC,bg=$BG,nobold]$rarrow"
+
+# Window status style
+tmux_set window-status-style          "fg=$TC,bg=$BG,none"
+tmux_set window-status-last-style     "fg=$TC,bg=$BG,bold"
+tmux_set window-status-activity-style "fg=$TC,bg=$BG,bold"
 
 # Window separator
 tmux_set window-status-separator ""
 
 # Window status alignment
 tmux_set status-justify centre
-
-# Current window status
-tmux_set window-status-current-statys "fg=$TC,bg=$BG"
 
 # Pane border
 tmux_set pane-border-style "fg=$G07,bg=default"
