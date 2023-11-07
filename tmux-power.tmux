@@ -146,9 +146,6 @@ tmux_set window-status-activity-style "fg=$TC,bg=$BG,bold"
 # Window separator
 tmux_set window-status-separator ""
 
-# Window status alignment
-tmux_set status-justify centre
-
 # Pane border
 tmux_set pane-border-style "fg=$G07,bg=default"
 
