@@ -27,6 +27,9 @@ session_icon="$(tmux_get '@tmux_power_session_icon' '')"
 user_icon="$(tmux_get '@tmux_power_user_icon' '')"
 time_icon="$(tmux_get '@tmux_power_time_icon' '')"
 date_icon="$(tmux_get '@tmux_power_date_icon' '')"
+show_user="$(tmux_get @tmux_power_show_user true)"
+show_date="$(tmux_get @tmux_power_show_date true)"
+rainbarf="$(tmux_get @tmux_power_rainbarf true)"
 show_upload_speed="$(tmux_get @tmux_power_show_upload_speed false)"
 show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
 show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
@@ -85,7 +88,7 @@ FG="$G10"
 BG="$G04"
 
 # Status options
-tmux_set status-interval 1
+tmux_set status-interval 3
 tmux_set status on
 
 # Basic status bar colors
@@ -106,8 +109,11 @@ tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]$rarrow"
 tmux_set status-left-bg "$G04"
 tmux_set status-left-fg "$G12"
 tmux_set status-left-length 150
-user=$(whoami)
-LS="#[fg=$G04,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$G06,nobold]$rarrow#[fg=$TC,bg=$G06] $session_icon #S "
+if "$show_user"; then
+    u=$(whoami)
+    user="#[fg=$G04,bg=$TC,bold] $user_icon $u@#h#[fg=$TC,bg=$G06,nobold]$rarrow"
+fi
+LS="$user#[fg=$TC,bg=$G06] $session_icon #S "
 if "$show_upload_speed"; then
     LS="$LS#[fg=$G06,bg=$G05]$rarrow#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$rarrow"
 else
@@ -122,12 +128,18 @@ tmux_set status-left "$LS"
 tmux_set status-right-bg "$BG"
 tmux_set status-right-fg "$G12"
 tmux_set status-right-length 150
-RS="#[fg=$G06]$larrow#[fg=$TC,bg=$G06] $time_icon $time_format #[fg=$TC,bg=$G06]$larrow#[fg=$G04,bg=$TC] $date_icon $date_format "
+if "$show_date"; then
+    date="#[fg=$TC,bg=$G06]$larrow#[fg=$G04,bg=$TC] $date_icon $date_format "
+fi
+RS="#[fg=$G06]$larrow#[fg=$TC,bg=$G06] $time_icon $time_format $date"
 if "$show_download_speed"; then
     RS="#[fg=$G05,bg=$BG]$larrow#[fg=$TC,bg=$G05] $download_speed_icon #{download_speed} $RS"
 fi
 if "$show_web_reachable"; then
     RS=" #{web_reachable_status} $RS"
+fi
+if "$rainbarf"; then
+    RS="#[fg=$G05,bg=$BG]$larrow#(rainbarf)$RS"
 fi
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
