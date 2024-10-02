@@ -29,6 +29,7 @@ time_icon="$(tmux_get '@tmux_power_time_icon' '')"
 date_icon="$(tmux_get '@tmux_power_date_icon' '')"
 show_user="$(tmux_get @tmux_power_show_user true)"
 show_date="$(tmux_get @tmux_power_show_date true)"
+rainbarf="$(tmux_get @tmux_power_rainbarf true)"
 show_upload_speed="$(tmux_get @tmux_power_show_upload_speed false)"
 show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
 show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
@@ -87,7 +88,7 @@ FG="$G10"
 BG="$G04"
 
 # Status options
-tmux_set status-interval 1
+tmux_set status-interval 3
 tmux_set status on
 
 # Basic status bar colors
@@ -136,6 +137,9 @@ if "$show_download_speed"; then
 fi
 if "$show_web_reachable"; then
     RS=" #{web_reachable_status} $RS"
+fi
+if "$rainbarf"; then
+    RS="#[fg=$G05,bg=$BG]$larrow#(rainbarf)$RS"
 fi
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
