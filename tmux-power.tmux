@@ -126,7 +126,9 @@ else
     if "$show_host"; then
         LS="$LS#[fg=$G06,bg=$BG]$rarrow"
     else
-        LS="$LS#[fg=$TC,bg=$G06]$rarrow"
+        if "$show_session"; then
+            LS="$LS#[fg=$TC,bg=$BG]$rarrow"
+        fi
     fi
 fi
 if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
