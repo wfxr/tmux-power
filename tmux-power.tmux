@@ -27,7 +27,9 @@ session_icon="$(tmux_get '@tmux_power_session_icon' '')"
 user_icon="$(tmux_get '@tmux_power_user_icon' '')"
 time_icon="$(tmux_get '@tmux_power_time_icon' '')"
 date_icon="$(tmux_get '@tmux_power_date_icon' '')"
-show_user_host="$(tmux_get @tmux_power_show_user_host true)"
+show_user="$(tmux_get @tmux_power_show_host true)"
+show_host="$(tmux_get @tmux_power_show_host true)"
+show_session="$(tmux_get @tmux_power_show_session true)"
 show_upload_speed="$(tmux_get @tmux_power_show_upload_speed false)"
 show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
 show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
@@ -107,12 +109,22 @@ tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]$rarrow"
 tmux_set status-left-bg "$G04"
 tmux_set status-left-fg "$G12"
 tmux_set status-left-length 150
-if "$show_user_host"; then
-    user=$(whoami)
-    LS="#[fg=$G04,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$G06,nobold]$rarrow#[fg=$TC,bg=$G06] $session_icon #S "
-else
-    LS="#[fg=$TC,bg=$G06] $session_icon #S "
+
+# user@host
+if "$show_user" && "$show_host"; then
+    LS="#[fg=$G04,bg=$TC,bold] $user_icon $(whoami)@#h #[fg=$TC,bg=$G06,nobold]$rarrow"
+elif "$show_user"; then
+    LS="#[fg=$G04,bg=$TC,bold] $user_icon $(whoami) #[fg=$TC,bg=$G06,nobold]$rarrow"
+elif "$show_host"; then
+    LS="#[fg=$G04,bg=$TC,bold] #h #[fg=$TC,bg=$G06,nobold]$rarrow"
 fi
+
+# session
+if "$show_session"; then
+    LS="$LS#[fg=$TC,bg=$G06] $session_icon #S "
+fi
+
+# upload speed
 if "$show_upload_speed"; then
     LS="$LS#[fg=$G06,bg=$G05]$rarrow#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$rarrow"
 else
