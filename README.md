@@ -100,6 +100,9 @@ set -g @tmux_power_date_icon ' '
 set -g @tmux_power_time_icon ' '
 set -g @tmux_power_user_icon ' '
 set -g @tmux_power_session_icon ' '
+set -g @tmux_power_show_user            true
+set -g @tmux_power_show_host            true
+set -g @tmux_power_show_session         true
 set -g @tmux_power_show_upload_speed    true
 set -g @tmux_power_show_download_speed  true
 set -g @tmux_power_show_web_reachable   true
