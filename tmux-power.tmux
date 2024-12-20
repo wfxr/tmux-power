@@ -66,6 +66,9 @@ case $TC in
     'everforest' )
         TC='#a7c080'
         ;;
+    'rosepine' )
+        TC='#c4a7e7'
+        ;;
     'default' ) # Useful when your term changes colour dynamically (e.g. pywal)
         TC='colour3'
         ;;
