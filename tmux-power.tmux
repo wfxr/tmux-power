@@ -66,6 +66,9 @@ case $TC in
     'everforest' )
         TC='#a7c080'
         ;;
+    'nord' )
+        TC='#81A1C1'
+        ;;
     'rosepine' )
         TC='#c4a7e7'
         ;;
