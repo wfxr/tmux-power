@@ -100,21 +100,22 @@ the following configurations can generate the theme shown in the first screensho
 set -g @plugin 'wfxr/tmux-power'
 set -g @plugin 'wfxr/tmux-net-speed'
 set -g @tmux_power_theme 'everforest'
-set -g @tmux_power_date_icon ' '
-set -g @tmux_power_time_icon ' '
-set -g @tmux_power_user_icon ' '
-set -g @tmux_power_session_icon ' '
-set -g @tmux_power_show_user            true
-set -g @tmux_power_show_host            true
-set -g @tmux_power_show_session         true
-set -g @tmux_power_show_upload_speed    true
-set -g @tmux_power_show_download_speed  true
-set -g @tmux_power_show_web_reachable   true
-set -g @tmux_power_right_arrow_icon     ''
-set -g @tmux_power_left_arrow_icon      ''
-set -g @tmux_power_upload_speed_icon    '󰕒'
-set -g @tmux_power_download_speed_icon  '󰇚'
-set -g @tmux_power_prefix_highlight_pos 'R'
+set -g @tmux_power_date_icon           ' '
+set -g @tmux_power_time_icon           ' '
+set -g @tmux_power_user_icon           ' '
+set -g @tmux_power_session_icon        ' '
+set -g @tmux_power_right_arrow_icon    ''
+set -g @tmux_power_left_arrow_icon     ''
+set -g @tmux_power_upload_speed_icon   '󰕒'
+set -g @tmux_power_download_speed_icon '󰇚'
+```
+
+The following components can be toggled on or off:
+
+```tmux
+set -g @tmux_power_show_user    true
+set -g @tmux_power_show_host    true
+set -g @tmux_power_show_session true
 ```
 
 *The default icons use glyphs from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*
@@ -124,7 +125,7 @@ set -g @tmux_power_prefix_highlight_pos 'R'
 **[tmux-net-speed](https://github.com/wfxr/tmux-net-speed)**
 
 ```tmux
-set -g @tmux_power_show_upload_speed true
+set -g @tmux_power_show_upload_speed   true
 set -g @tmux_power_show_download_speed true
 ```
 
