@@ -68,38 +68,23 @@ set -g @tmux_power_theme 'violet'
 ```bash
 set -g @tmux_power_theme 'redwine'
 ```
-#### Default
-```bash
-set -g @tmux_power_theme 'default'
-```
-Set this theme if you want to honor the terminal colorscheme. To be used with
-something like [pywal](https://github.com/dylanaraps/pywal) for instance.
-
 ### ⚙  Customizing
 
 You can define your favourite colors if you don't like any of above.
 
 ```tmux
-# Main color
+# You can set it to a true color in '#RRGGBB' format
 set -g @tmux_power_theme '#483D8B' # dark slate blue
 
-# Foreground and background
-set -g @tmux_power_fg '#ffffff' # white
-set -g @tmux_power_bg '#000000' # black
+# Or you can set it to 'colorX' which honors your terminal colorscheme
+set -g @tmux_power_theme 'colour3'
 
-# Greys
-set -g @tmux_power_g01 "#080808"
-set -g @tmux_power_g02 "#121212"
-set -g @tmux_power_g03 "#1c1c1c"
-set -g @tmux_power_g04 "#262626"
-set -g @tmux_power_g05 "#303030"
-set -g @tmux_power_g06 "#3a3a3a"
-set -g @tmux_power_g07 "#444444"
-set -g @tmux_power_g08 "#4e4e4e"
-set -g @tmux_power_g00 "#585858"
-set -g @tmux_power_g10 "#626262"
-set -g @tmux_power_g11 "#6c6c6c"
-set -g @tmux_power_g12 "#767676"
+# The following colors are used as gradient colors
+set -g @tmux_power_g0 "#262626"
+set -g @tmux_power_g1 "#303030"
+set -g @tmux_power_g2 "#3a3a3a"
+set -g @tmux_power_g3 "#444444"
+set -g @tmux_power_g4 "#626262"
 ```
 
 You can change the date and time formats using strftime:
