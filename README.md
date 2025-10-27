@@ -116,6 +116,8 @@ The following components can be toggled on or off:
 set -g @tmux_power_show_user    true
 set -g @tmux_power_show_host    true
 set -g @tmux_power_show_session true
+
+set -g @tmux_power_use_bold     true
 ```
 
 *The default icons use glyphs from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*
