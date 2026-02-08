@@ -38,7 +38,7 @@ prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 time_format=$(tmux_get @tmux_power_time_format '%T')
 date_format=$(tmux_get @tmux_power_date_format '%F')
 
-use_bold="$(tmux_get @tmux_power_use_bold false)"
+use_bold="$(tmux_get @tmux_power_use_bold true)"
 
 # short for Theme-Colour
 TC=$(tmux_get '@tmux_power_theme' 'gold')
