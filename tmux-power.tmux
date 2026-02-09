@@ -38,6 +38,8 @@ prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 time_format=$(tmux_get @tmux_power_time_format '%T')
 date_format=$(tmux_get @tmux_power_date_format '%F')
 
+use_bold="$(tmux_get @tmux_power_use_bold true)"
+
 # short for Theme-Colour
 TC=$(tmux_get '@tmux_power_theme' 'gold')
 case $TC in
@@ -76,6 +78,14 @@ G2=$(tmux_get @tmux_power_g2 "#3a3a3a")
 G3=$(tmux_get @tmux_power_g3 "#444444")
 G4=$(tmux_get @tmux_power_g4 "#626262")
 
+if "$use_bold"; then
+    bold_prefix="bold"
+    bold_postfix="nobold"
+else
+    bold_prefix="none"
+    bold_postfix="none"
+fi
+
 # Status options
 tmux_set status-interval 1
 tmux_set status on
@@ -87,7 +97,7 @@ tmux_set status-attr none
 
 # tmux-prefix-highlight
 tmux_set @prefix_highlight_show_copy_mode 'on'
-tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$G0,bold"
+tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$G0,$bold_prefix"
 tmux_set @prefix_highlight_output_prefix "#[fg=$TC]#[bg=$G0]$larrow#[bg=$TC]#[fg=$G0]"
 tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$G0]$rarrow"
 
@@ -98,11 +108,11 @@ tmux_set status-left-length 150
 
 # user@host
 if "$show_user" && "$show_host"; then
-    LS="#[fg=$G0,bg=$TC,bold] $user_icon $(whoami)@#h #[fg=$TC,bg=$G2,nobold]$rarrow"
+    LS="#[fg=$G0,bg=$TC,$bold_prefix] $user_icon $(whoami)@#h #[fg=$TC,bg=$G2,$bold_postfix]$rarrow"
 elif "$show_user"; then
-    LS="#[fg=$G0,bg=$TC,bold] $user_icon $(whoami) #[fg=$TC,bg=$G2,nobold]$rarrow"
+    LS="#[fg=$G0,bg=$TC,$bold_prefix] $user_icon $(whoami) #[fg=$TC,bg=$G2,$bold_postfix]$rarrow"
 elif "$show_host"; then
-    LS="#[fg=$G0,bg=$TC,bold] #h #[fg=$TC,bg=$G2,nobold]$rarrow"
+    LS="#[fg=$G0,bg=$TC,$bold_prefix] #h #[fg=$TC,bg=$G2,$bold_postfix]$rarrow"
 fi
 
 # session
@@ -138,12 +148,12 @@ tmux_set status-right "$RS"
 
 # Window status format
 tmux_set window-status-format         "#[fg=$G0,bg=$G2]$rarrow#[fg=$TC,bg=$G2] #I:#W#F #[fg=$G2,bg=$G0]$rarrow"
-tmux_set window-status-current-format "#[fg=$G0,bg=$TC]$rarrow#[fg=$G0,bg=$TC,bold] #I:#W#F #[fg=$TC,bg=$G0,nobold]$rarrow"
+tmux_set window-status-current-format "#[fg=$G0,bg=$TC]$rarrow#[fg=$G0,bg=$TC,$bold_prefix] #I:#W#F #[fg=$TC,bg=$G0,$bold_postfix]$rarrow"
 
 # Window status style
 tmux_set window-status-style          "fg=$TC,bg=$G0,none"
-tmux_set window-status-last-style     "fg=$TC,bg=$G0,bold"
-tmux_set window-status-activity-style "fg=$TC,bg=$G0,bold"
+tmux_set window-status-last-style     "fg=$TC,bg=$G0,$bold_prefix"
+tmux_set window-status-activity-style "fg=$TC,bg=$G0,$bold_prefix"
 
 # Window separator
 tmux_set window-status-separator ""
