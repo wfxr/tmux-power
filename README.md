@@ -68,6 +68,11 @@ set -g @tmux_power_theme 'violet'
 ```bash
 set -g @tmux_power_theme 'redwine'
 ```
+#### Sky
+```bash
+set -g @tmux_power_theme 'sky'
+```
+
 ### ⚙  Customizing
 
 You can define your favourite colors if you don't like any of above.
