@@ -56,14 +56,17 @@ set -g @tmux_power_theme 'coral'
 ```bash
 set -g @tmux_power_theme 'snow'
 ```
+
 #### Forest
 ```bash
 set -g @tmux_power_theme 'forest'
 ```
+
 #### Violet
 ```bash
 set -g @tmux_power_theme 'violet'
 ```
+
 #### Redwine
 ```bash
 set -g @tmux_power_theme 'redwine'
