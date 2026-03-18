@@ -27,14 +27,14 @@ tmux_flush() {
 }
 
 # Defaults
-right_arrow_icon=''
-left_arrow_icon=''
+right_arrow_icon=''
+left_arrow_icon=''
 upload_speed_icon='󰕒'
 download_speed_icon='󰇚'
-session_icon=''
-user_icon=''
-time_icon=''
-date_icon=''
+session_icon=''
+user_icon=''
+time_icon=''
+date_icon=''
 show_user='true'
 show_host='true'
 show_session='true'
