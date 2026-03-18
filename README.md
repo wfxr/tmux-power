@@ -60,7 +60,7 @@ set -g @tmux_power_theme 'snow'
 ```bash
 set -g @tmux_power_theme 'forest'
 ```
-Violet
+#### Violet
 ```bash
 set -g @tmux_power_theme 'violet'
 ```
@@ -118,6 +118,8 @@ set -g @tmux_power_show_host    true
 set -g @tmux_power_show_session true
 
 set -g @tmux_power_use_bold     true
+
+set -g @tmux_power_status_interval 1  # status bar refresh interval in seconds
 ```
 
 *The default icons use glyphs from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*

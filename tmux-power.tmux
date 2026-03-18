@@ -20,10 +20,10 @@ tmux_set() {
 }
 
 # Options
-rarrow=$(tmux_get '@tmux_power_right_arrow_icon' '')
-larrow=$(tmux_get '@tmux_power_left_arrow_icon' '')
-upload_speed_icon=$(tmux_get '@tmux_power_upload_speed_icon' '󰕒')
-download_speed_icon=$(tmux_get '@tmux_power_download_speed_icon' '󰇚')
+rarrow="$(tmux_get '@tmux_power_right_arrow_icon' '')"
+larrow="$(tmux_get '@tmux_power_left_arrow_icon' '')"
+upload_speed_icon="$(tmux_get '@tmux_power_upload_speed_icon' '󰕒')"
+download_speed_icon="$(tmux_get '@tmux_power_download_speed_icon' '󰇚')"
 session_icon="$(tmux_get '@tmux_power_session_icon' '')"
 user_icon="$(tmux_get '@tmux_power_user_icon' '')"
 time_icon="$(tmux_get '@tmux_power_time_icon' '')"
@@ -34,9 +34,9 @@ show_session="$(tmux_get @tmux_power_show_session true)"
 show_upload_speed="$(tmux_get @tmux_power_show_upload_speed false)"
 show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
 show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
-prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
-time_format=$(tmux_get @tmux_power_time_format '%T')
-date_format=$(tmux_get @tmux_power_date_format '%F')
+prefix_highlight_pos="$(tmux_get @tmux_power_prefix_highlight_pos)"
+time_format="$(tmux_get @tmux_power_time_format '%T')"
+date_format="$(tmux_get @tmux_power_date_format '%F')"
 
 use_bold="$(tmux_get @tmux_power_use_bold true)"
 
@@ -87,7 +87,7 @@ else
 fi
 
 # Status options
-tmux_set status-interval 1
+tmux_set status-interval "$(tmux_get @tmux_power_status_interval 1)"
 tmux_set status on
 
 # Basic status bar colors
