@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux-x86_64
+            os: ubuntu-24.04
+            install: |
+              sudo apt-get update
+              sudo apt-get install -y tmux shellcheck
+            run_shellcheck: true
+          - name: linux-arm64
+            os: ubuntu-24.04-arm
+            install: |
+              sudo apt-get update
+              sudo apt-get install -y tmux
+            run_shellcheck: false
+          - name: macos-x86_64
+            os: macos-15-intel
+            install: |
+              brew install tmux
+            run_shellcheck: false
+          - name: macos-arm64
+            os: macos-15
+            install: |
+              brew install tmux
+            run_shellcheck: false
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+        run: ${{ matrix.install }}
+
+      - name: Run shell syntax checks
+        run: |
+          bash -n tmux-power.tmux
+          bash -n tests/tmux_power_test.sh
+
+      - name: Run shellcheck
+        if: matrix.run_shellcheck
+        run: |
+          shellcheck tmux-power.tmux
+          shellcheck tests/tmux_power_test.sh
+
+      - name: Run integration tests
+        run: bash tests/tmux_power_test.sh

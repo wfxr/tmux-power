@@ -78,6 +78,60 @@ set -g @tmux_power_theme 'sky'
 
 ### ⚙  Customizing
 
+> **Upgrading from v1?** The section-based model replaces the old `show_*` / `*_icon` / `use_bold` options.
+> See the [migration guide](https://github.com/wfxr/tmux-power/pull/66#issuecomment-4108589864) for a complete mapping from old options to new ones.
+
+#### Sections
+
+The status bar is composed of configurable sections. Left sections go from outer to inner (`a` → `d`),
+right sections go from inner to outer (`w` → `z`). Empty sections are automatically skipped with
+correct arrow transitions. Section contents use tmux status formats, so values like `#{user}`, `#h`,
+`#S`, and `%T` are expanded by tmux at render time.
+
+```text
+ [left_a]▸[left_b]▸[left_c]▸[left_d]▸  ...windows...  ◂[right_w]◂[right_x]◂[right_y]◂[right_z]
+```
+
+The defaults are:
+
+```tmux
+set -g @tmux_power_right_arrow_icon ''
+set -g @tmux_power_left_arrow_icon  ''
+set -g @tmux_power_left_a  ' #{user}@#h'  # user@host
+set -g @tmux_power_left_b  ' #S'          # session name
+set -g @tmux_power_left_c  ''
+set -g @tmux_power_left_d  ''
+set -g @tmux_power_right_w ''
+set -g @tmux_power_right_x ''
+set -g @tmux_power_right_y ' %T'         # time
+set -g @tmux_power_right_z ' %F'         # date
+```
+
+Each section can also have a style (e.g. `bold`, `italics`), applied via a `_style` suffix:
+
+```tmux
+set -g @tmux_power_left_a_style  'bold'  # default
+set -g @tmux_power_right_z_style 'bold'
+```
+
+As an example, the following configurations can generate the theme shown in the first screenshot:
+
+```tmux
+set -g @plugin 'wfxr/tmux-power'
+set -g @plugin 'wfxr/tmux-net-speed'
+set -g @tmux_power_theme            'everforest'
+set -g @tmux_power_right_arrow_icon ''
+set -g @tmux_power_left_arrow_icon  ''
+set -g @tmux_power_left_a           '#{user}@#h'
+set -g @tmux_power_left_b           '#S'
+set -g @tmux_power_left_c           '󰕒 #{upload_speed}'
+set -g @tmux_power_right_x          '󰇚 #{download_speed}'
+set -g @tmux_power_right_y          '%T'
+set -g @tmux_power_right_z          '%F'
+```
+
+#### Theme colors
+
 You can define your favourite colors if you don't like any of above.
 
 ```tmux
@@ -95,50 +149,23 @@ set -g @tmux_power_g3 "#444444"
 set -g @tmux_power_g4 "#626262"
 ```
 
-You can change the date and time formats using strftime:
+#### Other options
 
 ```tmux
-set -g @tmux_power_date_format '%F'
-set -g @tmux_power_time_format '%T'
-```
-
-You can also customize the icons. As an example,
-the following configurations can generate the theme shown in the first screenshot:
-```bash
-set -g @plugin 'wfxr/tmux-power'
-set -g @plugin 'wfxr/tmux-net-speed'
-set -g @tmux_power_theme 'everforest'
-set -g @tmux_power_date_icon           ' '
-set -g @tmux_power_time_icon           ' '
-set -g @tmux_power_user_icon           ' '
-set -g @tmux_power_session_icon        ' '
-set -g @tmux_power_right_arrow_icon    ''
-set -g @tmux_power_left_arrow_icon     ''
-set -g @tmux_power_upload_speed_icon   '󰕒'
-set -g @tmux_power_download_speed_icon '󰇚'
-```
-
-The following components can be toggled on or off:
-
-```tmux
-set -g @tmux_power_show_user    true
-set -g @tmux_power_show_host    true
-set -g @tmux_power_show_session true
-
-set -g @tmux_power_use_bold     true
-
 set -g @tmux_power_status_interval 1  # status bar refresh interval in seconds
 ```
 
-*The default icons use glyphs from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*
+*The default arrows/icons and examples that include icon glyphs use characters from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).*
 
 ### 📦 Plugin support
 
 **[tmux-net-speed](https://github.com/wfxr/tmux-net-speed)**
 
+Put speed indicators in any section you like:
+
 ```tmux
-set -g @tmux_power_show_upload_speed   true
-set -g @tmux_power_show_download_speed true
+set -g @tmux_power_left_c  '󰕒 #{upload_speed}'
+set -g @tmux_power_right_x '󰇚 #{download_speed}'
 ```
 
 **[tmux-prefix-highlight](https://github.com/tmux-plugins/tmux-prefix-highlight)**
@@ -151,7 +178,7 @@ set -g @tmux_power_prefix_highlight_pos 'LR'
 **[tmux-web-reachable](https://github.com/wfxr/tmux-web-reachable)**
 
 ```tmux
-set -g @tmux_power_show_web_reachable true
+set -g @tmux_power_right_w '#{web_reachable_status}'
 ```
 
 ### 🔗 Other plugins
