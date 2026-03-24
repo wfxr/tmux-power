@@ -172,9 +172,10 @@ set -g @tmux_power_status_interval 1  # status bar refresh interval in seconds
 
 ### 📦 Plugin support
 
-**[tmux-net-speed](https://github.com/wfxr/tmux-net-speed)**
+Any tmux plugin that exposes `#{...}` format tokens can be placed in a section.
+You can also use tmux's `#(cmd)` syntax to embed the output of any shell command.
 
-Put speed indicators in any section you like:
+**[tmux-net-speed](https://github.com/wfxr/tmux-net-speed)**
 
 ```tmux
 set -g @tmux_power_left_c  '󰕒 #{upload_speed}'
@@ -188,10 +189,16 @@ set -g @tmux_power_right_x '󰇚 #{download_speed}'
 set -g @tmux_power_prefix_highlight_pos 'LR'
 ```
 
-**[tmux-web-reachable](https://github.com/wfxr/tmux-web-reachable)**
+**[tmux-mem-cpu-load](https://github.com/thewtex/tmux-mem-cpu-load)**
 
 ```tmux
-set -g @tmux_power_right_w '#{web_reachable_status}'
+set -g @tmux_power_right_w '#(tmux-mem-cpu-load)'
+```
+
+**Weather via [wttr.in](https://wttr.in)**
+
+```tmux
+set -g @tmux_power_right_w '#(curl -s "wttr.in?format=1" | sed -e "s/+//" -e "s/ \+/ /")'
 ```
 
 ### 🔗 Other plugins
@@ -200,7 +207,6 @@ You might also find these useful:
 
 - [tmux-fzf-url](https://github.com/wfxr/tmux-fzf-url)
 - [tmux-net-speed](https://github.com/wfxr/tmux-net-speed)
-- [tmux-web-reachable](https://github.com/wfxr/tmux-web-reachable)
 
 ### 📃 License
 
