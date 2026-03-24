@@ -8,6 +8,16 @@ Yet another powerline theme for tmux.
 
 ![screenshot](https://raw.githubusercontent.com/wfxr/i/master/tmux-power-custom.png)
 
+### ✨ Features
+
+- **Powerline aesthetic** — arrow separators with smooth gradient color transitions
+- **9 built-in themes** — or define your own colors
+- **Fully configurable sections** — 8 status segments that accept any tmux format string
+  - Empty sections are automatically skipped with correct arrow transitions
+  - Per-section style control (bold, italics, etc.)
+- **Fast** — theme loads in a single batch, minimal impact on tmux startup time
+- **Plugin ecosystem** — works with [tmux-net-speed](https://github.com/wfxr/tmux-net-speed), [tmux-prefix-highlight](https://github.com/tmux-plugins/tmux-prefix-highlight), [tmux-web-reachable](https://github.com/wfxr/tmux-web-reachable), and more
+
 ### 📥 Installation
 
 **Install manually**
