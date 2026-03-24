@@ -13,8 +13,9 @@ Yet another powerline theme for tmux.
 - **Powerline aesthetic** — arrow separators with smooth gradient color transitions
 - **9 built-in themes** — or define your own colors
 - **Fully configurable sections** — 8 status segments that accept any tmux format string
-  - Empty sections are automatically skipped with correct arrow transitions
+  - [lualine](https://github.com/nvim-lualine/lualine.nvim)-inspired flexible configuration model
   - Per-section style control (bold, italics, etc.)
+  - Empty sections are automatically skipped with correct arrow transitions
 - **Fast** — theme loads in a single batch, minimal impact on tmux startup time
 - **Plugin ecosystem** — works with [tmux-net-speed](https://github.com/wfxr/tmux-net-speed), [tmux-prefix-highlight](https://github.com/tmux-plugins/tmux-prefix-highlight), [tmux-web-reachable](https://github.com/wfxr/tmux-web-reachable), and more
 
@@ -99,7 +100,9 @@ correct arrow transitions. Section contents use tmux status formats, so values l
 `#S`, and `%T` are expanded by tmux at render time.
 
 ```text
- [left_a]▸[left_b]▸[left_c]▸[left_d]▸  ...windows...  ◂[right_w]◂[right_x]◂[right_y]◂[right_z]
++---+---+---+---+--------------------------------------+---+---+---+---+
+| A | B | C | D |           ...windows...              | W | X | Y | Z |
++---+---+---+---+--------------------------------------+---+---+---+---+
 ```
 
 The defaults are:
