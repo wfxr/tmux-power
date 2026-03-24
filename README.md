@@ -119,15 +119,15 @@ As an example, the following configurations can generate the theme shown in the 
 ```tmux
 set -g @plugin 'wfxr/tmux-power'
 set -g @plugin 'wfxr/tmux-net-speed'
-set -g @tmux_power_theme            'everforest'
-set -g @tmux_power_right_arrow_icon ''
-set -g @tmux_power_left_arrow_icon  ''
-set -g @tmux_power_left_a           '#{user}@#h'
-set -g @tmux_power_left_b           '#S'
-set -g @tmux_power_left_c           '󰕒 #{upload_speed}'
-set -g @tmux_power_right_x          '󰇚 #{download_speed}'
-set -g @tmux_power_right_y          '%T'
-set -g @tmux_power_right_z          '%F'
+set -g @tmux_power_theme 'everforest'
+set -g @tmux_power_right_arrow_icon ''
+set -g @tmux_power_left_arrow_icon  ''
+set -g @tmux_power_left_a  '#{user}@#h'
+set -g @tmux_power_left_b  '#S'
+set -g @tmux_power_left_c  '󰕒 #{upload_speed}'
+set -g @tmux_power_right_x '󰇚 #{download_speed}'
+set -g @tmux_power_right_y '%T'
+set -g @tmux_power_right_z '%F'
 ```
 
 #### Theme colors
