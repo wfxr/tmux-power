@@ -162,6 +162,15 @@ set -g @tmux_power_g3 "#444444"
 set -g @tmux_power_g4 "#626262"
 ```
 
+#### Shell command integration
+
+Section contents support tmux's `#(cmd)` syntax, so you can embed the output of any shell command.
+For example, to show weather in the status bar:
+
+```tmux
+set -g @tmux_power_right_w '#(curl -s "wttr.in?format=1" | sed -e "s/+//" -e "s/ \+/ /")'
+```
+
 #### Other options
 
 ```tmux
@@ -173,7 +182,6 @@ set -g @tmux_power_status_interval 1  # status bar refresh interval in seconds
 ### 📦 Plugin support
 
 Any tmux plugin that exposes `#{...}` format tokens can be placed in a section.
-You can also use tmux's `#(cmd)` syntax to embed the output of any shell command.
 
 **[tmux-net-speed](https://github.com/wfxr/tmux-net-speed)**
 
@@ -193,12 +201,6 @@ set -g @tmux_power_prefix_highlight_pos 'LR'
 
 ```tmux
 set -g @tmux_power_right_w '#(tmux-mem-cpu-load)'
-```
-
-**Weather via [wttr.in](https://wttr.in)**
-
-```tmux
-set -g @tmux_power_right_w '#(curl -s "wttr.in?format=1" | sed -e "s/+//" -e "s/ \+/ /")'
 ```
 
 ### 🔗 Other plugins
