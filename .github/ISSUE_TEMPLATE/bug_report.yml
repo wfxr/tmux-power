@@ -1,0 +1,68 @@
+name: Bug Report
+description: Report a display glitch, compatibility issue, or unexpected behavior
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened? What did you expect instead?
+      placeholder: "e.g., Arrow separators show as garbled characters after upgrading to tmux 3.5"
+    validations:
+      required: true
+
+  - type: input
+    id: tmux-version
+    attributes:
+      label: tmux version
+      description: "Output of `tmux -V`"
+      placeholder: "tmux 3.4"
+    validations:
+      required: true
+
+  - type: input
+    id: bash-version
+    attributes:
+      label: Bash version
+      description: "Output of `bash --version`"
+      placeholder: "GNU bash, version 5.2.37(1)-release"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Linux (x86_64)
+        - Linux (arm64)
+        - macOS (Apple Silicon)
+        - macOS (Intel)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: terminal
+    attributes:
+      label: Terminal emulator
+      placeholder: "e.g., Alacritty 0.14, iTerm2 3.5, kitty 0.36"
+    validations:
+      required: false
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Relevant tmux-power config
+      description: The `@tmux_power_*` options from your `.tmux.conf`
+      render: bash
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: A screenshot often tells the full story for display issues
+    validations:
+      required: false
