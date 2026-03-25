@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/tmux-plugins/tpm"><img src="https://img.shields.io/badge/tpm--support-true-blue" alt="TPM"></a>
   <a href="https://github.com/rothgar/awesome-tmux"><img src="https://img.shields.io/badge/Awesome-tmux-d07cd0?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABVklEQVRIS+3VvWpVURDF8d9CRAJapBAfwWCt+FEJthIUUcEm2NgIYiOxsrCwULCwktjYKSgYLfQF1JjCNvoMNhYRCwOO7HAiVw055yoBizvN3nBmrf8+M7PZsc2RbfY3AfRWeNMSVdUlHEzS1t6oqvt4n+TB78l/AKpqHrdwLcndXndU1WXcw50k10c1PwFV1fa3cQVzSR4PMd/IqaoLeIj2N1eTfG/f1gFVtQMLOI+zSV6NYz4COYFneIGLSdZSVbvwCMdxMsnbvzEfgRzCSyzjXAO8xlHcxMq/mI9oD+AGlhqgxjD93OVOD9TUuICdXd++/VeAVewecKKv2NPlfcHUAM1qK9FTnBmQvJjkdDfWzzE7QPOkAfZiEce2ECzhVJJPHWAfGuTwFpo365pO0NYjmEFr5Eas4SPeJfll2rqb38Z7/yaaD+0eNM3kPejt86REvSX6AamgdXkgoxLxAAAAAElFTkSuQmCC" alt="Awesome"></a>
-  <a href="https://wfxr.mit-license.org/2017"><img src="https://img.shields.io/github/license/wfxr/tmux-power" alt="License"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/wfxr/tmux-power" alt="License"></a>
 </p>
 
 ![screenshot](https://raw.githubusercontent.com/wfxr/i/master/tmux-power-custom.png)
