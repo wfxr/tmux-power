@@ -535,7 +535,7 @@ main() {
     run_test test_prefix_highlight_position_variants
     run_test test_use_bold_option_is_ignored
 
-    if (( TESTS_FAILED > 0 )); then
+    if ((TESTS_FAILED > 0)); then
         echo "$TESTS_FAILED of $TESTS_RUN tests failed" >&2
         exit 1
     fi

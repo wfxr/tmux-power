@@ -194,10 +194,10 @@ tmux_set() {
 tmux_flush() {
     [[ -z "$_tmux_set_cmds" ]] && return
     # tmux 3.0+ supports reading from stdin via 'source-file -'
-    if ! tmux source-file - <<< "$_tmux_set_cmds" 2>/dev/null; then
+    if ! tmux source-file - <<<"$_tmux_set_cmds" 2>/dev/null; then
         local _tmpfile
         _tmpfile="$(mktemp)"
-        printf '%s' "$_tmux_set_cmds" > "$_tmpfile"
+        printf '%s' "$_tmux_set_cmds" >"$_tmpfile"
         tmux source-file "$_tmpfile"
         rm -f "$_tmpfile"
     fi
