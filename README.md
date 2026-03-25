@@ -96,7 +96,7 @@ set -g @tmux_power_theme 'sky'
 
 The status bar is composed of configurable sections. Left sections go from outer to inner (`a` → `d`),
 right sections go from inner to outer (`w` → `z`). Empty sections are automatically skipped with
-correct arrow transitions. Section contents use tmux status formats, so values like `#{user}`, `#h`,
+correct arrow transitions. Section contents use tmux status formats, so values like `#{USER}`, `#h`,
 `#S`, and `%T` are expanded by tmux at render time.
 
 ```text
@@ -110,7 +110,7 @@ The defaults are:
 ```tmux
 set -g @tmux_power_right_arrow_icon ''
 set -g @tmux_power_left_arrow_icon  ''
-set -g @tmux_power_left_a  ' #{user}@#h'  # user@host
+set -g @tmux_power_left_a  ' #{USER}@#h'  # user@host
 set -g @tmux_power_left_b  ' #S'          # session name
 set -g @tmux_power_left_c  ''
 set -g @tmux_power_left_d  ''
@@ -135,7 +135,7 @@ set -g @plugin 'wfxr/tmux-net-speed'
 set -g @tmux_power_theme 'everforest'
 set -g @tmux_power_right_arrow_icon ''
 set -g @tmux_power_left_arrow_icon  ''
-set -g @tmux_power_left_a  '#{user}@#h'
+set -g @tmux_power_left_a  '#{USER}@#h'
 set -g @tmux_power_left_b  '#S'
 set -g @tmux_power_left_c  '󰕒 #{upload_speed}'
 set -g @tmux_power_right_x '󰇚 #{download_speed}'

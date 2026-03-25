@@ -13,7 +13,7 @@ set_defaults() {
     prefix_highlight_pos=''
 
     # Section contents (left: outer→inner, right: inner→outer)
-    left_a=' #{user}@#h'
+    left_a=' #{USER}@#h'
     left_b=' #S'
     left_c=''
     left_d=''

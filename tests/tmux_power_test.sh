@@ -136,7 +136,7 @@ test_default_left_status_uses_tmux_user_format() {
 
     local rendered
     rendered="$(show_left)"
-    assert_contains '#{user}@#h' "$rendered" \
+    assert_contains '#{USER}@#h' "$rendered" \
         "default status-left should keep tmux-native user/host format" || return 1
 
     if [[ "$rendered" == *"\$USER@#h"* ]]; then
@@ -156,7 +156,7 @@ test_default_sections_preserve_icon_defaults() {
     rendered_left="$(render_left)"
     rendered_right="$(render_right)"
 
-    assert_contains ' #{user}@#h' "$status_left" \
+    assert_contains ' #{USER}@#h' "$status_left" \
         "default left_a should keep the upstream user icon" || return 1
     assert_contains ' #S' "$status_left" \
         "default left_b should keep the upstream session icon" || return 1
