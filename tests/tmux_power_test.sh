@@ -477,6 +477,42 @@ test_prefix_highlight_position_variants() {
     done
 }
 
+test_window_styles_can_be_configured() {
+    start_tmux
+    set_power_option window_current_style 'underscore'
+    set_power_option window_last_style 'none'
+    set_power_option window_activity_style 'italics'
+    set_power_option window_bell_style 'dim'
+    load_plugin
+
+    local window_current window_last window_activity window_bell
+    window_current="$(run_tmux show -gv window-status-current-format)"
+    window_last="$(run_tmux show -gv window-status-last-style)"
+    window_activity="$(run_tmux show -gv window-status-activity-style)"
+    window_bell="$(run_tmux show -gv window-status-bell-style)"
+
+    assert_contains ',underscore]' "$window_current" \
+        "current window should use window_current_style" || return 1
+    assert_contains ',none' "$window_last" \
+        "last window should use window_last_style" || return 1
+    assert_contains ',italics' "$window_activity" \
+        "activity window should use window_activity_style" || return 1
+    assert_contains ',dim' "$window_bell" \
+        "bell window should use window_bell_style" || return 1
+}
+
+test_prefix_highlight_style_can_be_configured() {
+    start_tmux
+    set_power_option prefix_highlight_style 'none'
+    load_plugin
+
+    local prefix_copy
+    prefix_copy="$(run_tmux show -gv @prefix_highlight_copy_mode_attr)"
+
+    assert_contains ',none' "$prefix_copy" \
+        "prefix highlight should use prefix_highlight_style" || return 1
+}
+
 test_use_bold_option_is_ignored() {
     start_tmux
     set_power_option use_bold false
@@ -533,6 +569,8 @@ main() {
     run_test test_batch_loader_preserves_tmux_and_shell_literals
     run_test test_section_styles_apply_per_section
     run_test test_prefix_highlight_position_variants
+    run_test test_window_styles_can_be_configured
+    run_test test_prefix_highlight_style_can_be_configured
     run_test test_use_bold_option_is_ignored
 
     if ((TESTS_FAILED > 0)); then

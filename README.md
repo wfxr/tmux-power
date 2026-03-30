@@ -131,6 +131,29 @@ set -g @tmux_power_left_a_style  'bold'  # default
 set -g @tmux_power_right_z_style 'bold'
 ```
 
+Window and prefix-highlight styles are configurable through the same plugin option model:
+
+```tmux
+set -g @tmux_power_window_current_style   'bold'  # default
+set -g @tmux_power_window_last_style      'bold'  # default
+set -g @tmux_power_window_activity_style  'bold'  # default
+set -g @tmux_power_window_bell_style      'bold'  # default
+set -g @tmux_power_prefix_highlight_style 'bold'  # default
+```
+
+To disable bold for the current window, window flags, and prefix highlight:
+
+```tmux
+set -g @tmux_power_window_current_style   'none'
+set -g @tmux_power_window_last_style      'none'
+set -g @tmux_power_window_activity_style  'none'
+set -g @tmux_power_window_bell_style      'none'
+set -g @tmux_power_prefix_highlight_style 'none'
+```
+
+Advanced users can still overwrite native tmux options after the plugin loads, but the
+`@tmux_power_*` settings above are the supported tmux-power interface.
+
 As an example, the following configurations can generate the theme shown in the first screenshot:
 
 ```tmux
