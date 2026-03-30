@@ -1,0 +1,16 @@
+name: Prek checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  prek:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: j178/prek-action@v2
+        env:
+          SKIP: run-tests

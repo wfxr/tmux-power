@@ -1,0 +1,40 @@
+# Configuration file for `prek`, a git hook framework written in Rust.
+# See https://prek.j178.dev for more information.
+#:schema https://www.schemastore.org/prek.json
+
+[[repos]]
+repo = "builtin"
+hooks = [
+    { id = "trailing-whitespace" },
+    { id = "end-of-file-fixer" },
+    { id = "check-yaml" },
+    { id = "check-merge-conflict" },
+    { id = "check-executables-have-shebangs" },
+    { id = "check-shebang-scripts-are-executable" },
+]
+
+[[repos]]
+repo = "https://github.com/jorisroovers/gitlint"
+rev = "v0.19.1"
+hooks = [{ id = "gitlint" }]
+
+[[repos]]
+repo = "https://github.com/shellcheck-py/shellcheck-py"
+rev = "v0.11.0.1"
+hooks = [{ id = "shellcheck", args = ["--severity=warning"] }]
+
+[[repos]]
+repo = "https://github.com/scop/pre-commit-shfmt"
+rev = "v3.13.0-1"
+hooks = [{ id = "shfmt", args = ["-i", "4", "-ci", "-bn", "-kp", "-d"] }]
+
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "run-tests"
+name = "run tests"
+entry = "bash tests/tmux_power_test.sh"
+language = "system"
+pass_filenames = false
+always_run = true

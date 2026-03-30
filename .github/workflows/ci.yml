@@ -7,18 +7,6 @@ on:
       - master
 
 jobs:
-  lint:
-    name: lint
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v6
-
-      - name: Run pre-commit
-        uses: pre-commit/action@v3.0.1
-        env:
-          SKIP: run-tests
-
   test:
     name: test (${{ matrix.name }})
     runs-on: ${{ matrix.os }}
