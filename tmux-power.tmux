@@ -31,6 +31,11 @@ set_defaults() {
     right_x_style=''
     right_y_style=''
     right_z_style=''
+    window_current_style='bold'
+    window_last_style='bold'
+    window_activity_style='bold'
+    window_bell_style='bold'
+    prefix_highlight_style='bold'
     theme='gold'
     g0='#262626'
     g1='#303030'
@@ -74,7 +79,7 @@ configure_status_bar() {
     tmux_set status-attr none
 
     tmux_set @prefix_highlight_show_copy_mode 'on'
-    tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$G0,bold"
+    tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$G0,$prefix_highlight_style"
     tmux_set @prefix_highlight_output_prefix "#[fg=$TC]#[bg=$G0]$left_arrow_icon#[bg=$TC]#[fg=$G0]"
     tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$G0]$right_arrow_icon"
 
@@ -149,12 +154,12 @@ build_right_status() {
 
 configure_ui_styles() {
     tmux_set window-status-format         "#[fg=$G0,bg=$G2]$right_arrow_icon#[fg=$TC,bg=$G2] #I:#W#F #[fg=$G2,bg=$G0]$right_arrow_icon"
-    tmux_set window-status-current-format "#[fg=$G0,bg=$TC]$right_arrow_icon#[fg=$G0,bg=$TC,bold] #I:#W#F #[fg=$TC,bg=$G0,nobold]$right_arrow_icon"
+    tmux_set window-status-current-format "#[fg=$G0,bg=$TC]$right_arrow_icon#[fg=$G0,bg=$TC,$window_current_style] #I:#W#F #[fg=$TC,bg=$G0,none]$right_arrow_icon"
 
     tmux_set window-status-style          "fg=$TC,bg=$G0,none"
-    tmux_set window-status-last-style     "fg=$TC,bg=$G0,bold"
-    tmux_set window-status-activity-style "fg=$TC,bg=$G0,bold"
-    tmux_set window-status-bell-style     "fg=$TC,bg=$G0,bold"
+    tmux_set window-status-last-style     "fg=$TC,bg=$G0,$window_last_style"
+    tmux_set window-status-activity-style "fg=$TC,bg=$G0,$window_activity_style"
+    tmux_set window-status-bell-style     "fg=$TC,bg=$G0,$window_bell_style"
     tmux_set window-status-separator ""
 
     tmux_set pane-border-style "fg=$G3,bg=default"
