@@ -210,6 +210,10 @@ set -g @tmux_power_status_interval 1  # status bar refresh interval in seconds
 
 Any tmux plugin that exposes `#{...}` format tokens can be placed in a section.
 
+> [!TIP]
+> If you use plugins that post-process `status-left` or `status-right` when they are sourced
+> (for example, `tmux-battery`), load `wfxr/tmux-power` before them in your TPM plugin list.
+
 **[tmux-net-speed](https://github.com/wfxr/tmux-net-speed)**
 
 ```tmux
