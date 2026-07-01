@@ -74,9 +74,7 @@ configure_status_bar() {
     tmux_set status-interval "$status_interval"
     tmux_set status on
 
-    tmux_set status-bg "$G0"
-    tmux_set status-fg "$G4"
-    tmux_set status-attr none
+    tmux_set status-style "bg=$G0,fg=$G4,fill=$G0"
 
     tmux_set @prefix_highlight_show_copy_mode 'on'
     tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$G0,$prefix_highlight_style"
@@ -171,8 +169,8 @@ configure_ui_styles() {
     tmux_set clock-mode-colour "$TC"
     tmux_set clock-mode-style 24
 
-    tmux_set message-style "fg=$TC,bg=$G0"
-    tmux_set message-command-style "fg=$TC,bg=$G0"
+    tmux_set message-style "fg=$TC,bg=$G0,fill=$G0"
+    tmux_set message-command-style "fg=$TC,bg=$G0,fill=$G0"
     tmux_set mode-style "bg=$TC,fg=$G4"
 }
 
