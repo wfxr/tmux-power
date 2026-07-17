@@ -43,6 +43,8 @@ set_defaults() {
     g3='#444444'
     g4='#626262'
     status_interval='1'
+
+    status_lines='1'
 }
 
 # Theme resolution
@@ -89,6 +91,7 @@ configure_status_bar() {
     tmux_set status-right-length 150
 }
 
+# Build the left side of the status bar (outer→inner sections a→d)
 build_left_status() {
     local LS="" prev_bg="$G0" first=true
     local content bg fg style i
@@ -123,6 +126,7 @@ build_left_status() {
     tmux_set status-left "$LS"
 }
 
+# Build the right side of the status bar (inner→outer sections w→z)
 build_right_status() {
     local RS="" prev_bg="$G0"
     local content bg fg style i
@@ -148,6 +152,53 @@ build_right_status() {
     fi
 
     tmux_set status-right "$RS"
+}
+
+# Enable dual status bar (status=2) and populate both format slots
+configure_dual_status_bars() {
+    tmux_set status 2
+    build_status_format_0
+    build_status_format_1
+}
+
+build_status_format_0() {
+    # Normal window format (with style fallbacks for last/bell/activity/silence)
+    local win_normal="#{W:"
+    win_normal+="#[range=window|#{window_index} #{E:window-status-style}"
+    win_normal+="#{?#{&&:#{window_last_flag},#{!=:#{E:window-status-last-style},default}}, #{E:window-status-last-style},}"
+    win_normal+="#{?#{&&:#{window_bell_flag},#{!=:#{E:window-status-bell-style},default}}, #{E:window-status-bell-style},"
+    win_normal+="#{?#{&&:#{||:#{window_activity_flag},#{window_silence_flag}},#{!=:#{E:window-status-activity-style},default}}, #{E:window-status-activity-style},}}"
+    win_normal+="]"
+    win_normal+="#[push-default]#{T:window-status-format}#[pop-default]"
+    win_normal+="#[norange default]#{?window_end_flag,,#{window-status-separator}}"
+
+    # Current (focused) window format — same style fallback chain but for current
+    local win_current="#[range=window|#{window_index} list=focus"
+    win_current+=" #{?#{!=:#{E:window-status-current-style},default},#{E:window-status-current-style},#{E:window-status-style}}"
+    win_current+="#{?#{&&:#{window_last_flag},#{!=:#{E:window-status-last-style},default}}, #{E:window-status-last-style},}"
+    win_current+="#{?#{&&:#{window_bell_flag},#{!=:#{E:window-status-bell-style},default}}, #{E:window-status-bell-style},"
+    win_current+="#{?#{&&:#{||:#{window_activity_flag},#{window_silence_flag}},#{!=:#{E:window-status-activity-style},default}}, #{E:window-status-activity-style},}}"
+    win_current+="]"
+    win_current+="#[push-default]#{T:window-status-current-format}#[pop-default]"
+    win_current+="#[norange list=on default]#{?window_end_flag,,#{window-status-separator}}"
+    win_current+="}"
+
+    tmux_set status-format[0] \
+        "#[list=on align=#{status-justify}]#[list=left-marker]<#[list=right-marker]>#[list=on]${win_normal},${win_current}"
+}
+
+# Build the lower status line (status-format[1]) — window list + pane info
+build_status_format_1() {
+    local fmt_left="#[align=left range=left #{E:status-left-style}]#[push-default]"
+    fmt_left+="#{T;=/#{status-left-length}:status-left}#[pop-default]#[norange default]"
+
+    local fmt_center="#[align=centre]"
+    fmt_center+="#{P:#{?pane_active,#[reverse],}#{pane_index}[#{pane_width}x#{pane_height}]#[default] }"
+
+    local fmt_right="#[nolist align=right range=right #{E:status-right-style}]#[push-default]"
+    fmt_right+="#{T;=/#{status-right-length}:status-right}#[pop-default]#[norange default]"
+
+    tmux_set status-format[1] "${fmt_left}${fmt_center}${fmt_right}"
 }
 
 # Window, pane, and message styles
@@ -297,6 +348,7 @@ load_tmux_options() {
     )"
 }
 
+# Orchestrate the full configuration pipeline: defaults → options → theme → bars → ui → flush
 main() {
     set_defaults
     load_tmux_options
@@ -304,6 +356,11 @@ main() {
     configure_status_bar
     build_left_status
     build_right_status
+    if [[ "$status_lines" == "2" ]]; then
+        # In dual-line mode, additional dual-status-bar configuration is
+        # required; everything else is identical to single-line mode.
+        configure_dual_status_bars
+    fi
     configure_ui_styles
     tmux_flush
 }
