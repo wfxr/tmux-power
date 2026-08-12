@@ -11,6 +11,8 @@ set_defaults() {
     right_arrow_icon=''
     left_arrow_icon=''
     prefix_highlight_pos=''
+    left_edge=" "
+    right_edge=" "
 
     # Section contents (left: outer→inner, right: inner→outer)
     left_a=' #{USER}@#h'
@@ -47,18 +49,57 @@ set_defaults() {
 
 # Theme resolution
 
+host_theme_selector() {
+    local -a themes
+    local hosthash
+
+    # Each of these colors contrasts at least 4.5:1 to g0's #262626 foreground
+    # and a 6+ CIEDE2000 (ΔE00) difference to each other theme color. In ΔE00,
+    # 0-1 is "imperceptable", 1-2 is "barely perceptable", 2-5 is "noticeable",
+    # 5-10 is "strong", and > 10 indicates a "very strong difference".
+    #
+    # Notable pairs to concern over contrast and possible ΔE00 misses include:
+    #   #ea6c74/#22a95c (ΔE00 67.8, contrast 1.00, red/green colorblind issue?)
+    #   #f4a9ad/#4cd68a (ΔE00 57.0, contrast 1.02, red/green colorblind issue?)
+    #   #ebc50a/#e4bae9 (ΔE00 53.4, contrast 1.00, red/green colorblind issue?)
+    #   #ffd0d0/#a3e6e6 (ΔE00 38.4, contrast 1.01, red/green colorblind issue?)
+    #   #2dbd74/#4cb8b8 (ΔE00 20.9, contrast 1.02)
+    #   #4cd68a/#77cfcb (ΔE00 19.6, contrast 1.02)
+    #   #ecded5/#f4def3 (ΔE00 14.1, contrast 1.03)
+    #
+    # TODO: this could be ~twice as big if we could change the corresponding
+    # color (if this is BG, then change the FG) but that's complicated given
+    # the gradients. Contrasting to g0's #262626 is irrelevant when using g2
+    # (#3a3a3a) or g4 (#626262), which have massive contrast issues with all
+    # of these colors (and all colors in the named themes below as well).
+    themes=('#949494' '#b0b0b0' '#cacaca' '#ffffff'
+            '#ff4a4a' '#ea6c74' '#f4a9ad' '#ffd0d0'
+            '#ff7424' '#ff9f6b' '#ffc994' '#ffeab7'
+            '#b4815f' '#c09672' '#d0af95' '#ecded5'
+            '#a99024' '#bfa73b' '#ebc50a' '#f6e95c'
+            '#22a95c' '#2dbd74' '#4cd68a' '#7af092'
+            '#4cb8b8' '#77cfcb' '#a3e6e6' '#ccffff'
+            '#4b91e7' '#86b5ee' '#abc4fb' '#d4dffb'
+            '#c870d2' '#ca9bd9' '#e4bae9' '#f4def3'
+    )
+    hosthash=$(echo "$HOSTNAME" | cksum)
+    theme=${themes[ $(( ${hosthash%%[^0-9]*} % ${#themes[@]} )) ]}
+    TC="$theme"
+}
+
 resolve_theme_colors() {
     TC="$theme"
     case $TC in
         gold)       TC='#ffb86c' ;;
-        redwine)    TC='#b34a47' ;;
-        moon)       TC='#00abab' ;;
-        forest)     TC='#228b22' ;;
-        violet)     TC='#9370db' ;;
+        redwine)    TC='#cc827f' ;;
+        moon)       TC='#00acac' ;;
+        forest)     TC='#2bb12b' ;;
+        violet)     TC='#a385e0' ;;
         snow)       TC='#fffafa' ;;
         coral)      TC='#ff7f50' ;;
         sky)        TC='#87ceeb' ;;
         everforest) TC='#a7c080' ;;
+        host)       host_theme_selector ;;
     esac
 
     G0="$g0"
@@ -105,7 +146,7 @@ build_left_status() {
         style="${left_styles_arr[$i]:+,${left_styles_arr[$i]}}"
 
         if "$first"; then
-            LS="#[fg=$fg,bg=$bg${style}] $content "
+            LS="#[fg=$fg,bg=$bg${style}]$left_edge$content "
             first=false
         else
             LS+="#[fg=$prev_bg,bg=$bg,none]$right_arrow_icon"
@@ -147,7 +188,7 @@ build_right_status() {
         RS="#{prefix_highlight}$RS"
     fi
 
-    tmux_set status-right "$RS"
+    tmux_set status-right "${RS% }$right_edge"
 }
 
 # Window, pane, and message styles
